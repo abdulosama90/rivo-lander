@@ -642,38 +642,6 @@
   .warn-item p { font-size: 14.5px; line-height: 1.9; color:#4a4d45; }
   .warn-close { margin-top: 24px; font-family: var(--f-loud); font-weight:600; font-size: 16.5px; text-align:center; }
 
-  /* ─────────── RADIO ─────────── */
-  .radio-wrap { text-align:center; }
-  .radio-btn {
-    background: none; border: none; cursor: pointer; padding: 0;
-    display:inline-block;
-  }
-  .radio-btn img {
-    width: min(560px, 88vw); height: auto; display:block;
-    filter: drop-shadow(10px 12px 0 rgba(22,21,19,.35));
-    transition: transform .15s;
-  }
-  .radio-btn:hover img { transform: scale(1.015) rotate(-.4deg); }
-  .radio-btn.playing img { animation: radio-bounce .52s ease-in-out infinite; }
-  @keyframes radio-bounce {
-    0%,100% { transform: scale(1) rotate(0); }
-    25% { transform: scale(1.012, .985) rotate(-.5deg) translateY(2px); }
-    50% { transform: scale(.99, 1.015) rotate(.3deg) translateY(-3px); }
-    75% { transform: scale(1.008, .992) rotate(-.2deg) translateY(1px); }
-  }
-  .radio-caption {
-    margin-top: 26px;
-    font-family: var(--f-loud); font-weight: 700; font-size: 18px;
-    display:inline-block;
-    background: var(--pill);
-    border: 2.5px solid var(--ink);
-    border-radius: 999px;
-    padding: 8px 24px;
-    box-shadow: 3px 3px 0 var(--ink);
-    transform: rotate(-1deg);
-  }
-  .radio-caption.on { background: var(--sun); }
-
   /* ─────────── PRICING (شريط الأقراص) ─────────── */
   .pricing-wrap { position:relative; }
   .plans { display:grid; grid-template-columns: repeat(3, 1fr); gap: 30px; align-items:stretch; }
@@ -788,9 +756,19 @@
   }
   .rack-sub { font-size: 17px; line-height: 1.95; color:#0e2e2a; max-width: 44ch; }
   .rack-wrap {
+    position: relative;
     transform: rotate(-.6deg);
     justify-self: start;
     max-width: 560px;
+    padding-top: 84px;
+  }
+  .rack-radio {
+    position: absolute;
+    top: 0; left: 4%;
+    width: 190px;
+    transform: rotate(-5deg);
+    filter: drop-shadow(5px 6px 0 rgba(22,21,19,.3));
+    z-index: 2;
   }
   .rack-wrap img { display:block; width:100%; height:auto; filter: drop-shadow(10px 12px 0 rgba(22,21,19,.3)); }
   .rack-sub a { color: var(--ink); font-weight: 700; text-decoration: underline wavy #F2F1EC 2px; text-underline-offset: 4px; }
@@ -1012,6 +990,8 @@
     .legal-line { font-size: 11px; }
     .post-stamp { width: 110px; bottom: 6px; left: 4%; }
     .domain-grid { grid-template-columns: 1fr; gap: 30px; }
+    .rack-wrap { padding-top: 60px; }
+    .rack-radio { width: 130px; }
     .domain-art { text-align: center; }
     .domain-art img { max-width: 190px; margin: 0 auto; }
     .sec-head-start { text-align: center; }
@@ -1387,21 +1367,6 @@ $ <span class="cursor">▊</span></pre>
   </div>
 </section>
 
-<!-- ═══════════ RADIO — نوستالجيا ═══════════ -->
-<section id="radio">
-  <div class="sec-head">
-    <span class="tag">وحشتنا الأيام دي</span>
-    <h2>واحشك زمن الثمانينات والتسعينات؟</h2>
-    <p>زمن ريفو الأصلي — دوس على الراديو وسيب الشريط يلف.</p>
-  </div>
-  <div class="radio-wrap">
-    <button class="radio-btn" id="radio-toggle" aria-label="شغّل الموسيقى">
-      <img src="assets/radio.png" alt="راديو كاسيت قديم" id="radio-img">
-    </button>
-    <div class="radio-caption" id="radio-caption">دوس عليه وشوف</div>
-  </div>
-</section>
-
 <!-- ═══════════ PRICING — شريط الأقراص ═══════════ -->
 <section id="pricing" class="pricing-wrap">
   <div class="sec-head">
@@ -1471,6 +1436,7 @@ $ <span class="cursor">▊</span></pre>
       <p class="rack-sub">نفس البنية التحتية اللي بنستخدمها في <a href="https://aspired.agency" target="_blank" rel="noopener">ASPIRED</a> — شغّالة عليها مواقع شركات ووكالات من سنين. الشكل لعبة، بس الخدمة قوية بجد.</p>
     </div>
     <div class="rack-wrap">
+      <img class="rack-radio" src="assets/radio.png" alt="" aria-hidden="true">
       <img src="assets/rivo-rack.png" alt="سيرفرات ريفو" loading="lazy">
     </div>
   </div>
@@ -1654,34 +1620,6 @@ $ <span class="cursor">▊</span></pre>
   });
 })();
 
-(function(){
-  var tracks = ['assets/music/rivo-80s-1.m4a','assets/music/rivo-90s-2.m4a','assets/music/rivo-80s-3.m4a'];
-  var order = tracks.slice().sort(function(){ return Math.random()-.5; });
-  var idx = 0, audio = null;
-  var btn = document.getElementById('radio-toggle');
-  var cap = document.getElementById('radio-caption');
-  if (!btn) return;
-  function play(){
-    if (!audio) {
-      audio = new Audio();
-      audio.addEventListener('ended', function(){ idx=(idx+1)%order.length; audio.src=order[idx]; audio.play(); });
-    }
-    if (!audio.src || audio.ended) audio.src = order[idx];
-    audio.play();
-    btn.classList.add('playing');
-    cap.classList.add('on');
-    cap.textContent = 'شغّال — زمن ريفو الجميل ♪ (دوس تاني يقف)';
-  }
-  function stop(){
-    if (audio) audio.pause();
-    btn.classList.remove('playing');
-    cap.classList.remove('on');
-    cap.textContent = 'دوس عليه وشوف';
-  }
-  btn.addEventListener('click', function(){
-    if (btn.classList.contains('playing')) stop(); else play();
-  });
-})();
 </script>
 </body>
 </html>
