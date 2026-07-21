@@ -391,17 +391,12 @@
     background: #F2F1EC;
     clip-path: polygon(100.0% 50.0%, 86.7% 59.8%, 93.3% 75.0%, 76.9% 76.9%, 75.0% 93.3%, 59.8% 86.7%, 50.0% 100.0%, 40.2% 86.7%, 25.0% 93.3%, 23.1% 76.9%, 6.7% 75.0%, 13.3% 59.8%, 0.0% 50.0%, 13.3% 40.2%, 6.7% 25.0%, 23.1% 23.1%, 25.0% 6.7%, 40.2% 13.3%, 50.0% 0.0%, 59.8% 13.3%, 75.0% 6.7%, 76.9% 23.1%, 93.3% 25.0%, 86.7% 40.2%);
   }
-  .pills-visual { display:flex; gap: 7px; align-items:center; margin-bottom: 10px; min-height: 36px; }
-  .pills-visual .p1 {
-    width: 26px; height: 26px; border-radius: 50%;
-    background: #F2F1EC;
-    border: 2.5px solid var(--ink);
-    box-shadow: 2px 2px 0 var(--ink);
-    display:inline-block;
-  }
-  .pills-ten { flex-wrap: wrap; max-width: 180px; row-gap: 6px; }
-  .pills-ten .p1 { width: 20px; height: 20px; }
-  .plan.best .pills-visual .p1 { box-shadow: 2px 2px 0 rgba(244,238,226,.4); }
+  .pills-visual { display:flex; align-items:flex-end; justify-content:flex-start; margin-bottom: 12px; }
+  .pills-visual img { filter: drop-shadow(4px 5px 0 rgba(22,21,19,.28)); }
+  .pv-1 img { height: 110px; transform: rotate(-3deg); }
+  .pv-3 img { height: 130px; transform: rotate(6deg); }
+  .pv-10 { justify-content: center; margin: -46px -14px 10px; }
+  .pv-10 img { width: calc(100% + 28px); max-width: none; transform: rotate(-2.5deg); }
 
   .ic img, .ess-num img { width: 30px; height: 30px; display:block; }
 
@@ -606,6 +601,7 @@
   }
   .plan.best {
     background: var(--ink); color: var(--pill);
+    box-shadow: 8px 8px 0 var(--stamp);
     transform: scale(1.04) rotate(-.5deg);
     z-index: 2;
   }
@@ -1279,7 +1275,7 @@ $ <span class="cursor">▊</span></pre>
 
   <div class="plans">
     <div class="plan">
-      <div class="pills-visual"><span class="p1"></span></div>
+      <div class="pills-visual pv-1"><img src="assets/pack-1.png" alt="باكيت ريفو — مشروع واحد"></div>
       <h3>مشروع واحد</h3>
       <div class="sites">جرّب وشوف بنفسك</div>
       <div class="price">١٤٩<small> ج.م/شهر</small></div>
@@ -1295,7 +1291,7 @@ $ <span class="cursor">▊</span></pre>
 
     <div class="plan best">
       <div class="badge">الأكثر طلبًا</div>
-      <div class="pills-visual"><span class="p1"></span><span class="p1"></span><span class="p1"></span></div>
+      <div class="pills-visual pv-3"><img src="assets/pack-3.png" alt="شريط ريفو — ٣ مشاريع"></div>
       <h3>٣ مشاريع</h3>
       <div class="sites">للي شغّال على أكتر من فكرة</div>
       <div class="price">٣٤٩<small> ج.م/شهر</small></div>
@@ -1310,7 +1306,7 @@ $ <span class="cursor">▊</span></pre>
     </div>
 
     <div class="plan">
-      <div class="pills-visual pills-ten"><span class="p1"></span><span class="p1"></span><span class="p1"></span><span class="p1"></span><span class="p1"></span><span class="p1"></span><span class="p1"></span><span class="p1"></span><span class="p1"></span><span class="p1"></span></div>
+      <div class="pills-visual pv-10"><img src="assets/pack-10.png" alt="شريط ريفو — ١٠ مشاريع"></div>
       <h3>١٠ مشاريع</h3>
       <div class="sites">للفريلانسر والوكالات الصغيرة</div>
       <div class="price">٨٩٩<small> ج.م/شهر</small></div>
