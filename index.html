@@ -594,6 +594,38 @@
   .warn-item p { font-size: 14.5px; line-height: 1.9; color:#4a4d45; }
   .warn-close { margin-top: 24px; font-family: var(--f-loud); font-weight:600; font-size: 16.5px; text-align:center; }
 
+  /* ─────────── RADIO ─────────── */
+  .radio-wrap { text-align:center; }
+  .radio-btn {
+    background: none; border: none; cursor: pointer; padding: 0;
+    display:inline-block;
+  }
+  .radio-btn img {
+    width: min(560px, 88vw); height: auto; display:block;
+    filter: drop-shadow(10px 12px 0 rgba(22,21,19,.35));
+    transition: transform .15s;
+  }
+  .radio-btn:hover img { transform: scale(1.015) rotate(-.4deg); }
+  .radio-btn.playing img { animation: radio-bounce .52s ease-in-out infinite; }
+  @keyframes radio-bounce {
+    0%,100% { transform: scale(1) rotate(0); }
+    25% { transform: scale(1.012, .985) rotate(-.5deg) translateY(2px); }
+    50% { transform: scale(.99, 1.015) rotate(.3deg) translateY(-3px); }
+    75% { transform: scale(1.008, .992) rotate(-.2deg) translateY(1px); }
+  }
+  .radio-caption {
+    margin-top: 26px;
+    font-family: var(--f-loud); font-weight: 700; font-size: 18px;
+    display:inline-block;
+    background: var(--pill);
+    border: 2.5px solid var(--ink);
+    border-radius: 999px;
+    padding: 8px 24px;
+    box-shadow: 3px 3px 0 var(--ink);
+    transform: rotate(-1deg);
+  }
+  .radio-caption.on { background: var(--sun); }
+
   /* ─────────── PRICING (شريط الأقراص) ─────────── */
   .pricing-wrap { position:relative; }
   .plans { display:grid; grid-template-columns: repeat(3, 1fr); gap: 30px; align-items:stretch; }
@@ -1012,22 +1044,22 @@
   <span>يعالج: توقف الموقع</span><span class="t">✦</span>
   <span>يعالج: بطء التحميل</span><span class="t">✦</span>
   <span>يعالج: فواتير مفاجئة</span><span class="t">✦</span>
-  <span>يعالج: دعم سيء</span><span class="t">✦</span>
+  <span>يعالج: لوحات تحكم معقدة</span><span class="t">✦</span>
   <span>THE RIVO HOSTING CO. CAIRO</span><span class="t">✦</span>
   <span>يعالج: توقف الموقع</span><span class="t">✦</span>
   <span>يعالج: بطء التحميل</span><span class="t">✦</span>
   <span>يعالج: فواتير مفاجئة</span><span class="t">✦</span>
-  <span>يعالج: دعم سيء</span><span class="t">✦</span>
+  <span>يعالج: لوحات تحكم معقدة</span><span class="t">✦</span>
 
   <span>يعالج: توقف الموقع</span><span class="t">✦</span>
   <span>يعالج: بطء التحميل</span><span class="t">✦</span>
   <span>يعالج: فواتير مفاجئة</span><span class="t">✦</span>
-  <span>يعالج: دعم سيء</span><span class="t">✦</span>
+  <span>يعالج: لوحات تحكم معقدة</span><span class="t">✦</span>
   <span>THE RIVO HOSTING CO. CAIRO</span><span class="t">✦</span>
   <span>يعالج: توقف الموقع</span><span class="t">✦</span>
   <span>يعالج: بطء التحميل</span><span class="t">✦</span>
   <span>يعالج: فواتير مفاجئة</span><span class="t">✦</span>
-  <span>يعالج: دعم سيء</span><span class="t">✦</span>
+  <span>يعالج: لوحات تحكم معقدة</span><span class="t">✦</span>
 </div></div>
 
 <!-- ═══════════ DOMAIN ═══════════ -->
@@ -1062,7 +1094,7 @@
 <section id="essentials">
   <div class="sec-head">
     <span class="tag">مشروعك يستاهل</span>
-    <h2>اسم باسمك، ومكان لمشروعك</h2>
+    <h2>عنوان باسمك، ومكان لمشروعك</h2>
     <p>عندك فكرة أو مشروع خلصته وقاعد على جهازك؟ دي الحاجات اللي محتاجها عشان يطلع للناس.</p>
   </div>
 
@@ -1269,6 +1301,21 @@ $ <span class="cursor">▊</span></pre>
       </div>
     </div>
     <p class="warn-close">ده مش عيب في الخدمة — <b>ده سبب السعر.</b> عايز حد يظبطلك كل حاجة ويرد عليك؟ في شركات بتعمل كده بعشرة أضعاف السعر، وإحنا مش منهم.</p>
+  </div>
+</section>
+
+<!-- ═══════════ RADIO — نوستالجيا ═══════════ -->
+<section id="radio">
+  <div class="sec-head">
+    <span class="tag">وحشتنا الأيام دي</span>
+    <h2>واحشك زمن الثمانينات والتسعينات؟</h2>
+    <p>زمن ريفو الأصلي — دوس على الراديو وسيب الشريط يلف.</p>
+  </div>
+  <div class="radio-wrap">
+    <button class="radio-btn" id="radio-toggle" aria-label="شغّل الموسيقى">
+      <img src="assets/radio.png" alt="راديو كاسيت قديم" id="radio-img">
+    </button>
+    <div class="radio-caption" id="radio-caption">دوس عليه وشوف</div>
   </div>
 </section>
 
@@ -1521,6 +1568,35 @@ $ <span class="cursor">▊</span></pre>
     this.textContent = 'قريبًا — سجّل اهتمامك بالباقة الأول →';
     var p = document.getElementById('pricing');
     setTimeout(function(){ p.scrollIntoView({behavior:'smooth'}); }, 900);
+  });
+})();
+
+(function(){
+  var tracks = ['assets/music/rivo-80s-1.m4a','assets/music/rivo-90s-2.m4a','assets/music/rivo-80s-3.m4a'];
+  var order = tracks.slice().sort(function(){ return Math.random()-.5; });
+  var idx = 0, audio = null;
+  var btn = document.getElementById('radio-toggle');
+  var cap = document.getElementById('radio-caption');
+  if (!btn) return;
+  function play(){
+    if (!audio) {
+      audio = new Audio();
+      audio.addEventListener('ended', function(){ idx=(idx+1)%order.length; audio.src=order[idx]; audio.play(); });
+    }
+    if (!audio.src || audio.ended) audio.src = order[idx];
+    audio.play();
+    btn.classList.add('playing');
+    cap.classList.add('on');
+    cap.textContent = 'شغّال — زمن ريفو الجميل ♪ (دوس تاني يقف)';
+  }
+  function stop(){
+    if (audio) audio.pause();
+    btn.classList.remove('playing');
+    cap.classList.remove('on');
+    cap.textContent = 'دوس عليه وشوف';
+  }
+  btn.addEventListener('click', function(){
+    if (btn.classList.contains('playing')) stop(); else play();
   });
 })();
 </script>
