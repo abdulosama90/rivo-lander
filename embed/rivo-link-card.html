@@ -1,0 +1,130 @@
+<!-- ══════════════════════════════════════════════════════════════
+     RIVO — link-page promo card
+     Drop-in block for abdulosama.com/links
+
+     • Self-contained: one <style> + one <a>. No JS, no images, no build step.
+     • Everything is scoped under .rivo-promo — it cannot leak styles into
+       the host page, and the host page's resets won't flatten it.
+     • The whole card is a single <a>, so the entire surface is clickable.
+     • Fonts load from Google Fonts via @import (keep it as the first line
+       of the <style> block or browsers will ignore it).
+     ══════════════════════════════════════════════════════════════ -->
+
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Lalezar&family=Marhey:wght@500;600;700&family=Aref+Ruqaa:wght@400;700&display=swap');
+
+.rivo-promo{
+  --ink:#161513; --pill:#EFEFEA; --teal:#3FBCAE; --teal-deep:#27998C;
+  --stamp:#C0503C; --sun:#E2BC5F;
+  display:block; position:relative; overflow:hidden;
+  box-sizing:border-box; width:100%; max-width:520px; margin:18px auto;
+  padding:22px 26px 22px 44px;
+  direction:rtl; text-align:right; text-decoration:none;
+  background-color:var(--teal);
+  background-image:
+    repeating-linear-gradient(0deg,rgba(255,255,255,.07) 0 1px,transparent 1px 3px),
+    repeating-linear-gradient(90deg,rgba(255,255,255,.09) 0 1px,transparent 1px 3px);
+  background-size:3px 3px;
+  border:3px solid var(--ink); border-radius:20px;
+  box-shadow:7px 7px 0 var(--ink);
+  transition:transform .12s ease, box-shadow .12s ease;
+}
+.rivo-promo:hover{ transform:translate(-2px,-2px); box-shadow:9px 9px 0 var(--ink); }
+.rivo-promo:active{ transform:translate(3px,3px); box-shadow:2px 2px 0 var(--ink); }
+
+/* blister perforation down the left edge */
+.rivo-promo::before{
+  content:""; position:absolute; top:0; bottom:0; left:0; width:16px;
+  background:repeating-linear-gradient(to bottom,var(--ink) 0 12px,transparent 12px 24px);
+  border-right:3px solid var(--ink);
+}
+
+.rivo-promo__top{ display:flex; align-items:center; gap:10px; margin-bottom:12px; }
+.rivo-promo__tag{
+  font-family:'Marhey',sans-serif; font-weight:700; font-size:12px; color:var(--pill);
+  background:var(--ink); padding:4px 13px; border-radius:999px;
+  transform:rotate(-1.5deg); white-space:nowrap;
+}
+.rivo-promo__price{
+  font-family:'Marhey',sans-serif; font-weight:700; font-size:12px; color:#fff;
+  background:var(--stamp); padding:4px 13px; border-radius:999px;
+  border:2px solid var(--ink); transform:rotate(1.5deg); white-space:nowrap;
+  box-shadow:-3px 3px 0 var(--sun);
+}
+
+/* sticker wordmark: white body + black cloud outline, like the pack print */
+.rivo-promo__name{
+  font-family:'Lalezar','Marhey',sans-serif; font-size:46px; line-height:1.05;
+  color:var(--ink); margin:0 0 4px;
+  text-shadow:
+    4px 0 0 var(--pill), -4px 0 0 var(--pill), 0 4px 0 var(--pill), 0 -4px 0 var(--pill),
+    3px 3px 0 var(--pill), -3px 3px 0 var(--pill), 3px -3px 0 var(--pill), -3px -3px 0 var(--pill),
+    6px 6px 0 rgba(22,21,19,.22);
+}
+.rivo-promo__line{
+  font-family:'Lalezar','Marhey',sans-serif; font-size:21px; line-height:1.35;
+  color:var(--ink); margin:0 0 14px;
+  text-shadow:3px 0 0 var(--pill),-3px 0 0 var(--pill),0 3px 0 var(--pill),0 -3px 0 var(--pill),
+              2px 2px 0 var(--pill),-2px 2px 0 var(--pill);
+}
+
+.rivo-promo__body{
+  background:var(--pill); border:2.5px solid var(--ink); border-radius:14px;
+  padding:14px 16px; box-shadow:4px 4px 0 rgba(22,21,19,.32);
+}
+.rivo-promo__desc{
+  font-family:'Aref Ruqaa','Marhey',serif; font-size:16px; line-height:1.85;
+  color:#33362f; margin:0 0 12px;
+}
+.rivo-promo__desc b{ color:var(--ink); }
+
+.rivo-promo__chips{ display:flex; flex-wrap:wrap; gap:6px; margin-bottom:14px; }
+.rivo-promo__chip{
+  font-family:'Marhey',sans-serif; font-weight:600; font-size:12px; color:var(--ink);
+  background:var(--teal); border:2px solid var(--ink); border-radius:999px; padding:3px 11px;
+}
+
+.rivo-promo__cta{
+  display:flex; align-items:center; justify-content:center; gap:8px;
+  font-family:'Marhey',sans-serif; font-weight:700; font-size:17px;
+  color:var(--pill); background:var(--ink);
+  border:2.5px solid var(--ink); border-radius:999px; padding:11px 20px;
+}
+.rivo-promo:hover .rivo-promo__cta{ background:var(--teal-deep); }
+
+@media (max-width:480px){
+  .rivo-promo{ padding:18px 18px 18px 36px; border-radius:16px; box-shadow:5px 5px 0 var(--ink); }
+  .rivo-promo__name{ font-size:38px; }
+  .rivo-promo__line{ font-size:18px; }
+  .rivo-promo__desc{ font-size:15px; }
+}
+</style>
+
+<a class="rivo-promo" href="https://rivo.host" target="_blank" rel="noopener"
+   aria-label="ريفو — استضافة مواقع مصرية، تبدأ من ٩٠ جنيه في الشهر للمشروع">
+
+  <div class="rivo-promo__top">
+    <span class="rivo-promo__tag">استضافة مواقع · من مصر</span>
+    <span class="rivo-promo__price">من ٩٠ ج.م/شهر</span>
+  </div>
+
+  <h3 class="rivo-promo__name">ريفو</h3>
+  <p class="rivo-promo__line">استضافة من غير وجع دماغ.</p>
+
+  <div class="rivo-promo__body">
+    <p class="rivo-promo__desc">
+      بنيت مشروع بالـ AI ومحتاج ترفعه؟ <b>ريفو</b> استضافة مصرية بالجنيه —
+      مساحة غير محدودة، SSH وGit عشان وكيلك الذكي ينشر بنفسه، وSSL وإيميلات على دومينك.
+      <b>سعر ثابت، وسيلف سيرفيس بالكامل.</b>
+    </p>
+
+    <div class="rivo-promo__chips">
+      <span class="rivo-promo__chip">مساحة غير محدودة</span>
+      <span class="rivo-promo__chip">SSH · Git</span>
+      <span class="rivo-promo__chip">SSL مجاني</span>
+      <span class="rivo-promo__chip">بالجنيه المصري</span>
+    </div>
+
+    <span class="rivo-promo__cta">زور rivo.host ←</span>
+  </div>
+</a>
