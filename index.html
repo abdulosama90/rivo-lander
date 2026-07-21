@@ -437,6 +437,59 @@
   .term-body .cursor { color: var(--teal); animation: blink 1.1s steps(1) infinite; }
   @keyframes blink { 50% { opacity: 0; } }
 
+  /* ─────────── DOMAIN BAR ─────────── */
+  .domain-bar {
+    display:flex; align-items:center; gap: 0;
+    max-width: 860px; margin: 0 auto;
+    background: var(--pill);
+    border: var(--border);
+    border-radius: 999px;
+    box-shadow: var(--shadow-offset);
+    padding: 10px 12px 10px 26px;
+    transform: rotate(-.5deg);
+  }
+  .d-www, .d-com {
+    font-family: 'Baloo 2', sans-serif; font-weight: 800;
+    font-size: clamp(22px, 3vw, 34px);
+    color: #8b887c;
+  }
+  .d-com { color: var(--ink); margin: 0 18px 0 10px; }
+  .d-field { position: relative; flex: 1; min-width: 80px; }
+  .d-field input {
+    width: 100%;
+    border: none; outline: none; background: transparent;
+    font-family: 'Baloo 2', sans-serif; font-weight: 800;
+    font-size: clamp(22px, 3vw, 34px);
+    color: var(--teal-deep);
+    padding: 0 6px;
+    caret-color: transparent;
+  }
+  .d-caret {
+    position: absolute; top: 50%; transform: translateY(-50%);
+    left: 8px;
+    width: 4px; height: 1.1em;
+    background: var(--stamp);
+    animation: d-blink 1s steps(1) infinite;
+    pointer-events: none;
+  }
+  .d-ghost {
+    position: absolute; top: 50%; transform: translateY(-50%);
+    left: 18px;
+    font-family: var(--f-loud); font-size: clamp(14px, 1.6vw, 18px);
+    color: #8b887c;
+    pointer-events: none;
+    white-space: nowrap;
+  }
+  @keyframes d-blink { 50% { opacity: 0; } }
+  .d-btn { font-size: clamp(15px, 1.6vw, 19px); white-space: nowrap; flex-shrink: 0; }
+  .domain-notes {
+    margin-top: 30px; text-align: center;
+    font-size: 15px; line-height: 2.2;
+    color: #0e2e2a;
+  }
+  .domain-notes b { color: var(--ink); }
+  .d-dot { color: var(--pill); padding: 0 12px; }
+
   /* ─────────── STEPS (من غير كروت) ─────────── */
   .steps-flow {
     display:flex; align-items:flex-start; justify-content:center;
@@ -587,6 +640,85 @@
   .final h2 { font-family: var(--f-logo); font-size: clamp(40px,5vw,64px); margin-bottom: 12px; }
   .final p { font-size: 18px; margin-bottom: 30px; color:#0e2e2a; }
 
+  #rack { padding-top: 40px; }
+  .rack-grid {
+    display:grid; grid-template-columns: 1fr 1fr;
+    gap: 56px; align-items:center;
+  }
+  .rack-copy h2 {
+    font-family: var(--f-logo);
+    font-size: clamp(44px, 5vw, 68px);
+    line-height: 1.15;
+    margin-bottom: 18px;
+  }
+  .rack-big {
+    font-family: var(--f-logo);
+    font-size: clamp(26px, 3vw, 38px);
+    line-height: 1.5;
+    margin-bottom: 18px;
+  }
+  .rack-big b {
+    background: var(--pill);
+    border: 2.5px solid var(--ink);
+    border-radius: 12px;
+    padding: 0 14px 4px;
+    box-shadow: 3px 3px 0 var(--ink);
+    display:inline-block;
+    transform: rotate(-1deg);
+  }
+  .rack-sub { font-size: 17px; line-height: 1.95; color:#0e2e2a; max-width: 44ch; }
+  .rack-wrap {
+    border: var(--border);
+    border-radius: 20px;
+    overflow:hidden;
+    box-shadow: 8px 8px 0 var(--ink);
+    transform: rotate(-.6deg);
+    justify-self: start;
+    max-width: 520px;
+  }
+  .rack-wrap img { display:block; width:100%; height:auto; }
+
+
+  /* ─────────── ANIMATION (٩٠s cartoon) ─────────── */
+  @media (prefers-reduced-motion: no-preference) {
+    [data-anim] { opacity: 0; }
+    [data-anim].in {
+      animation: rivo-pop .45s cubic-bezier(.25,1.15,.4,1) both;
+      animation-delay: var(--d, 0s);
+    }
+    [data-anim].done { opacity: 1; animation: none; }
+    [data-anim].done:hover { animation: rivo-wiggle .5s ease; }
+
+    .pack.done:hover .pack-wrap { animation: rivo-wiggle .55s ease; }
+    .pack.done:hover::before { animation: rivo-spin-settle .8s ease; }
+
+    .ticker-track {
+      display: inline-block;
+      animation: rivo-marquee 36s linear infinite;
+    }
+    .ticker:hover .ticker-track { animation-play-state: paused; }
+  }
+  @keyframes rivo-pop {
+    0%   { opacity: 0; transform: scale(.85) rotate(-1.5deg); }
+    70%  { opacity: 1; transform: scale(1.025) rotate(.5deg); }
+    100% { opacity: 1; transform: scale(1) rotate(0); }
+  }
+  @keyframes rivo-wiggle {
+    0%,100% { transform: rotate(0); }
+    25% { transform: rotate(-1.2deg); }
+    55% { transform: rotate(.9deg); }
+    80% { transform: rotate(-.4deg); }
+  }
+  @keyframes rivo-spin-settle {
+    0% { transform: rotate(0); }
+    50% { transform: rotate(4deg) scale(1.02); }
+    100% { transform: rotate(0); }
+  }
+  @keyframes rivo-marquee {
+    from { transform: translateX(0); }
+    to   { transform: translateX(50%); }
+  }
+
   footer {
     background: var(--ink); color: var(--pill);
     border-top: var(--border);
@@ -598,7 +730,7 @@
   footer .t { color: var(--teal); }
 
   @media (max-width: 980px) {
-    .hero, .steps, .plans, .essentials-grid, .vibe-grid, .warn-grid { grid-template-columns: 1fr; }
+    .hero, .steps, .plans, .essentials-grid, .vibe-grid, .warn-grid, .rack-grid { grid-template-columns: 1fr; }
     .warn-item { border-left: none; border-bottom: 2.5px dashed var(--ink); }
     .warn-item:last-child { border-bottom: none; }
     .leaflet-grid { grid-template-columns: 1fr; }
@@ -699,7 +831,7 @@
   </div>
 </section>
 
-<div class="ticker">
+<div class="ticker"><div class="ticker-track">
   <span>يعالج: توقف الموقع</span><span class="t">✦</span>
   <span>بطء التحميل</span><span class="t">✦</span>
   <span>فواتير مفاجئة</span><span class="t">✦</span>
@@ -709,7 +841,87 @@
   <span>بطء التحميل</span><span class="t">✦</span>
   <span>فواتير مفاجئة</span><span class="t">✦</span>
   <span>دعم سيء</span><span class="t">✦</span>
-</div>
+
+  <span>يعالج: توقف الموقع</span><span class="t">✦</span>
+  <span>بطء التحميل</span><span class="t">✦</span>
+  <span>فواتير مفاجئة</span><span class="t">✦</span>
+  <span>دعم سيء</span><span class="t">✦</span>
+  <span>THE RIVO HOSTING CO. CAIRO</span><span class="t">✦</span>
+  <span>يعالج: توقف الموقع</span><span class="t">✦</span>
+  <span>بطء التحميل</span><span class="t">✦</span>
+  <span>فواتير مفاجئة</span><span class="t">✦</span>
+  <span>دعم سيء</span><span class="t">✦</span>
+</div></div>
+
+<!-- ═══════════ DOMAIN ═══════════ -->
+<section id="domain">
+  <div class="sec-head">
+    <span class="tag">الدومين</span>
+    <h2>اسمك أنت على الإنترنت</h2>
+    <p>الاستضافة هي الشقة اللي مشروعك ساكن فيها — <b>الدومين هو العنوان</b> اللي الناس بتوصلك بيه. من غير عنوان، محدش هيلاقي الشقة.</p>
+  </div>
+
+  <div class="domain-bar" dir="ltr">
+    <span class="d-www">www.</span>
+    <span class="d-field">
+      <input type="text" id="domain-input" placeholder="" autocomplete="off" spellcheck="false" maxlength="40" aria-label="اكتب اسمك">
+      <span class="d-caret" aria-hidden="true"></span>
+      <span class="d-ghost" aria-hidden="true">اكتب اسمك هنا</span>
+    </span>
+    <span class="d-com">.com</span>
+    <button class="btn btn-teal d-btn" type="button">احجزلي الاسم ده →</button>
+  </div>
+
+  <div class="domain-notes">
+    <span>مش متضمن في الباقات — <b>بتشتريه لوحده</b> وبيتجدد سنويًا</span>
+    <span class="d-dot">✦</span>
+    <span>بيبقى <b>ملكك أنت</b> — حتى لو مشيت من ريفو</span>
+    <span class="d-dot">✦</span>
+    <span>عندك دومين قديم؟ <b>تنقله وتديره من نفس اللوحة</b></span>
+  </div>
+</section>
+
+<!-- ═══════════ ESSENTIALS — دومين / استضافة / إيميل ═══════════ -->
+<section id="essentials">
+  <div class="sec-head">
+    <span class="tag">مشروعك يستاهل</span>
+    <h2>اسم باسمك، ومكان لمشروعك</h2>
+    <p>عندك فكرة أو مشروع خلصته وقاعد على جهازك؟ دي الحاجات اللي محتاجها عشان يطلع للناس.</p>
+  </div>
+
+  <div class="essentials-grid">
+    <div class="ess">
+      <div class="ess-num"><span class="mini-burst"></span></div>
+      <h3>دومين باسمك أنت</h3>
+      <p>
+        مش لينك طويل على منصة حد تاني — <b>yourname.com</b> بتاعك أنت.
+        اسمك أو اسم مشروعك، بالعربي معناه: أنت موجود فعلًا على الإنترنت.
+        تسجّله من عندنا في دقيقة، أو لو عندك دومين قديم تنقله وتديره من نفس اللوحة —
+        DNS كامل تحت إيدك.
+      </p>
+    </div>
+    <div class="ess">
+      <div class="ess-num"><span class="mini-burst"></span></div>
+      <h3>استضافة ترفع عليها مشروعك</h3>
+      <p>
+        بنيت مشروع بأي أداة AI؟ عندك ووردبريس؟ لاندينج بيدج لشغلك؟
+        <b>ارفعه وهو شغال في دقايق</b> — على سيرفرات NVMe سريعة، بشهادة SSL،
+        ونسخ احتياطي يومي بيحصل لوحده. أنت ركّز في مشروعك، وسيبنا نشيل هم السيرفر.
+      </p>
+    </div>
+    <div class="ess">
+      <div class="ess-num"><span class="mini-burst"></span></div>
+      <h3>إيميل احترافي على دومينك</h3>
+      <p>
+        بطّل تبعت لعملاءك من جيميل شخصي.
+        <b>you@yourname.com</b> شكله مختلف تمامًا في الشغل —
+        وبييجي مع استضافتك من غير أي تكلفة إضافية، بعدد الحسابات اللي أنت عايزه.
+      </p>
+    </div>
+  </div>
+
+  <div class="ess-punch">وكل ده مع بعض — <b>بـ ١٤٩ جنيه في الشهر.</b></div>
+</section>
 
 <!-- ═══════════ VIBE CODERS — SSH / GitHub / Deploy ═══════════ -->
 <section id="vibe">
@@ -759,6 +971,7 @@ $ <span class="cursor">▊</span></pre>
     </div>
   </div>
 </section>
+
 
 <!-- ═══════════ LEAFLET — النشرة الداخلية ═══════════ -->
 <section id="leaflet">
@@ -822,47 +1035,7 @@ $ <span class="cursor">▊</span></pre>
   </div>
 </section>
 
-<!-- ═══════════ ESSENTIALS — دومين / استضافة / إيميل ═══════════ -->
-<section id="essentials">
-  <div class="sec-head">
-    <span class="tag">مشروعك يستاهل</span>
-    <h2>اسم باسمك، ومكان لمشروعك</h2>
-    <p>عندك فكرة أو مشروع خلصته وقاعد على جهازك؟ دي الحاجات اللي محتاجها عشان يطلع للناس.</p>
-  </div>
 
-  <div class="essentials-grid">
-    <div class="ess">
-      <div class="ess-num"><span class="mini-burst"></span></div>
-      <h3>دومين باسمك أنت</h3>
-      <p>
-        مش لينك طويل على منصة حد تاني — <b>yourname.com</b> بتاعك أنت.
-        اسمك أو اسم مشروعك، بالعربي معناه: أنت موجود فعلًا على الإنترنت.
-        تسجّله من عندنا في دقيقة، أو لو عندك دومين قديم تنقله وتديره من نفس اللوحة —
-        DNS كامل تحت إيدك.
-      </p>
-    </div>
-    <div class="ess">
-      <div class="ess-num"><span class="mini-burst"></span></div>
-      <h3>استضافة ترفع عليها مشروعك</h3>
-      <p>
-        بنيت مشروع بأي أداة AI؟ عندك ووردبريس؟ لاندينج بيدج لشغلك؟
-        <b>ارفعه وهو شغال في دقايق</b> — على سيرفرات NVMe سريعة، بشهادة SSL،
-        ونسخ احتياطي يومي بيحصل لوحده. أنت ركّز في مشروعك، وسيبنا نشيل هم السيرفر.
-      </p>
-    </div>
-    <div class="ess">
-      <div class="ess-num"><span class="mini-burst"></span></div>
-      <h3>إيميل احترافي على دومينك</h3>
-      <p>
-        بطّل تبعت لعملاءك من جيميل شخصي.
-        <b>you@yourname.com</b> شكله مختلف تمامًا في الشغل —
-        وبييجي مع استضافتك من غير أي تكلفة إضافية، بعدد الحسابات اللي أنت عايزه.
-      </p>
-    </div>
-  </div>
-
-  <div class="ess-punch">وكل ده مع بعض — <b>بـ ١٤٩ جنيه في الشهر.</b></div>
-</section>
 
 
 <!-- ═══════════ STEPS ═══════════ -->
@@ -943,7 +1116,7 @@ $ <span class="cursor">▊</span></pre>
         <li>لوحة التحكم الكاملة</li>
         <li>تفعيل فوري — سيلف سيرفيس بالكامل</li>
       </ul>
-      <a href="#" class="btn btn-teal">أبو مشروع واحد</a>
+      <a href="#" class="btn btn-teal">هات أبو مشروع واحد</a>
     </div>
 
     <div class="plan best">
@@ -959,7 +1132,7 @@ $ <span class="cursor">▊</span></pre>
         <li>لوحة التحكم الكاملة</li>
         <li>تفعيل فوري — سيلف سيرفيس بالكامل</li>
       </ul>
-      <a href="#" class="btn">أبو ٣ مشاريع</a>
+      <a href="#" class="btn">هات أبو ٣ مشاريع</a>
     </div>
 
     <div class="plan">
@@ -974,12 +1147,26 @@ $ <span class="cursor">▊</span></pre>
         <li>لوحة التحكم الكاملة</li>
         <li>تفعيل فوري — سيلف سيرفيس بالكامل</li>
       </ul>
-      <a href="#" class="btn btn-teal">أبو ١٠ مشاريع</a>
+      <a href="#" class="btn btn-teal">هات أبو ١٠ مشاريع+</a>
     </div>
   </div>
 
   <div class="extra-note">محتاج أكتر من ١٠ مشاريع؟ السعر ثابت: <b>٨٠ ج.م/شهر لكل مشروع زيادة</b> — مهما كبرت.</div>
-  <div class="extra-note" style="font-size:13.5px; opacity:.85;">الاشتراك ٦ شهور مقدمًا · منصة سيلف سيرفيس · لا يوجد استرداد بعد التفعيل</div>
+  <div class="extra-note" style="font-size:13.5px; opacity:.85;">الاشتراك ٦ شهور مقدمًا · منصة سيلف سيرفيس · لا يوجد استرداد بعد التفعيل · الدومين غير متضمن — يُشترى منفصلًا</div>
+</section>
+
+<!-- ═══════════ RACK ═══════════ -->
+<section id="rack">
+  <div class="rack-grid">
+    <div class="rack-copy">
+      <h2>ما يغركش الشكل.</h2>
+      <p class="rack-big"><b>نظام استضافة محترم وقوي</b> — حاطين عليه مشاريع بالآلاف.</p>
+      <p class="rack-sub">نفس البنية التحتية اللي شغّالة عليها مواقع شركات ووكالات من سنين. الشكل لعبة، بس اللي تحته شغل جد.</p>
+    </div>
+    <div class="rack-wrap">
+      <img src="assets/rivo-rack.jpg" alt="سيرفرات ريفو" loading="lazy">
+    </div>
+  </div>
 </section>
 
 <!-- ═══════════ FAQ ═══════════ -->
@@ -1010,6 +1197,10 @@ $ <span class="cursor">▊</span></pre>
       <div class="a">استخدام عادل بلا حدود مصطنعة. مشروع شخصي أو متجر صغير أو بورتفوليو — مش هتحس بأي حد. ولو مشروعك كبر جدًا (مبروك!) هنكلمك ونرتب لك حل أكبر.</div>
     </details>
     <details>
+      <summary>الدومين متضمن في الباقة؟</summary>
+      <div class="a">لأ — الباقة فيها الاستضافة وكل أدواتها، <b>والدومين بتشتريه لوحده</b> (وبيتجدد سنويًا). ليه منفصل؟ عشان الدومين ملكك أنت مش بتاعنا: تقدر تاخده وتمشي في أي وقت، وده حقك. ولو عندك دومين قديم، تنقله أو توصّله بريفو ببلاش.</div>
+    </details>
+    <details>
       <summary>ليه اسمه ريفو؟</summary>
       <div class="a">لو أنت من جيل الثمانينات والتسعينات، أنت عارف. قرص واحد وكان الصداع يروح. <b>نفس الفكرة — بس للمواقع.</b></div>
     </details>
@@ -1030,5 +1221,60 @@ $ <span class="cursor">▊</span></pre>
   شركة ريفو للاستضافة · القاهرة <span class="t">✦</span> THE RIVO HOSTING CO. <span class="t">✦</span> يُحفظ في مكان جاف بعيدًا عن الاستضافات البطيئة
 </footer>
 
+
+<script>
+(function(){
+  if (matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+  var sel = ['.kicker','.brand','.pack','.rx','.made-egypt','.dosage','.btn-stamp',
+    '.sec-head .tag','.sec-head h2','.vchip','.term','.lf','.ess','.ess-punch',
+    '.sstep','.sarrow','.warnbox','.plan','.rack-copy','.rack-wrap','.faq details','.annual-note','.extra-note'];
+  var els = document.querySelectorAll(sel.join(','));
+  els.forEach(function(el){ el.setAttribute('data-anim',''); });
+  var io = new IntersectionObserver(function(entries){
+    entries.forEach(function(e){
+      if (!e.isIntersecting) return;
+      var el = e.target;
+      io.unobserve(el);
+      var sibs = [].filter.call(el.parentElement.children, function(c){ return c.hasAttribute('data-anim'); });
+      var i = sibs.indexOf(el);
+      el.style.setProperty('--d', (Math.max(i,0) * .06) + 's');
+      el.classList.add('in');
+      el.addEventListener('animationend', function h(ev){
+        if (ev.animationName === 'rivo-pop') { el.classList.add('done'); el.removeEventListener('animationend', h); }
+      });
+    });
+  }, {threshold: .18});
+  els.forEach(function(el){ io.observe(el); });
+})();
+
+(function(){
+  var inp = document.getElementById('domain-input');
+  if (!inp) return;
+  var ghost = document.querySelector('.d-ghost');
+  var caret = document.querySelector('.d-caret');
+  function paint(){
+    var v = inp.value;
+    ghost.style.display = v ? 'none' : '';
+    var w = 8;
+    if (v) {
+      var m = document.createElement('span');
+      m.style.cssText = 'position:absolute;visibility:hidden;white-space:pre;font-family:"Baloo 2",sans-serif;font-weight:800;font-size:'+getComputedStyle(inp).fontSize;
+      m.textContent = v;
+      document.body.appendChild(m);
+      w = Math.min(m.offsetWidth + 10, inp.offsetWidth - 6);
+      m.remove();
+    }
+    caret.style.left = w + 'px';
+  }
+  inp.addEventListener('input', paint);
+  inp.addEventListener('focus', paint);
+  paint();
+  document.querySelector('.d-btn').addEventListener('click', function(){
+    this.textContent = 'قريبًا — سجّل اهتمامك بالباقة الأول →';
+    var p = document.getElementById('pricing');
+    setTimeout(function(){ p.scrollIntoView({behavior:'smooth'}); }, 900);
+  });
+})();
+</script>
 </body>
 </html>
