@@ -604,6 +604,15 @@
     transform: rotate(-2deg);
     box-shadow: -4px 4px 0 var(--sun), 3px 3px 0 var(--ink);
   }
+  .warn-coin {
+    position: absolute;
+    top: -58px; right: 16%;
+    width: 128px;
+    transform: rotate(-12deg);
+    filter: drop-shadow(4px 5px 0 rgba(22,21,19,.3));
+    z-index: 2;
+    pointer-events: none;
+  }
   .warnbox h2 { font-family: var(--f-logo); font-size: clamp(30px, 3.6vw, 44px); margin-bottom: 12px; }
   .warn-intro { font-size: 16.5px; line-height: 1.95; color:#4a4d45; margin-bottom: 28px; }
   .warn-intro b, .warn-item p b, .warn-close b { color: var(--ink); }
@@ -927,6 +936,7 @@
 
     .warnbox { padding: 36px 22px 28px; }
     .warn-stamp { right: 16px; font-size: 13px; }
+    .warn-coin { width: 84px; top: -38px; right: auto; left: 10px; }
 
     .ess-punch { font-size: 22px; }
     .leaflet { padding: 30px 20px; }
@@ -955,7 +965,16 @@
     .sstep h3 { font-size: 18.5px; }
     .sstep p { font-size: 14px; }
     .snum { width: 52px; height: 52px; font-size: 28px; box-shadow: 3px 3px 0 var(--ink); }
-    .warnbox h2 { font-size: 24px; }
+    .warn-coin {
+    position: absolute;
+    top: -58px; right: 16%;
+    width: 128px;
+    transform: rotate(-12deg);
+    filter: drop-shadow(4px 5px 0 rgba(22,21,19,.3));
+    z-index: 2;
+    pointer-events: none;
+  }
+  .warnbox h2 { font-size: 24px; }
     .warn-intro { font-size: 14.5px; }
     .warn-item { padding: 16px 6px; }
     .warn-close { font-size: 14.5px; }
@@ -1321,6 +1340,7 @@ $ <span class="cursor">▊</span></pre>
 <section id="honesty">
   <div class="warnbox">
     <span class="warn-stamp">اقرأ كويس قبل ما تدفع</span>
+    <img class="warn-coin" src="assets/coin-25pt.png" alt="" aria-hidden="true">
     <h2>ليه رخيصة كده؟ عشان مفيش حاجة مخفية.</h2>
     <p class="warn-intro">السعر اللي بتدفعه ده تقريبًا <b>تكلفة الاستضافة نفسها</b> — مش مضاف عليه فريق خدمة عملاء ولا مصاريف تسويق. وعشان كده في ٣ حاجات لازم تعرفها وأنت مبسوط:</p>
     <div class="warn-grid">
