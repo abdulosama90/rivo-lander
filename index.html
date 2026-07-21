@@ -826,19 +826,25 @@
     section { padding: 52px 10px; }
     .plan.best { transform: none; }
 
-    nav { flex-wrap: wrap; gap: 10px 16px; padding: 12px 14px; justify-content: center; }
-    .logo-img { height: 40px; }
-    nav a { font-size: 14px; }
+    nav { gap: 10px; padding: 10px 14px; justify-content: space-between; }
+    .logo-img { height: 36px; }
+    nav a:not(.btn) { display: none; }
     .nav-spacer { display: none; }
+    nav .btn { font-size: 14px; padding: 8px 18px; box-shadow: 3px 3px 0 var(--ink); }
 
-    .hero { padding: 28px 10px 60px; gap: 30px; }
-    h1 { font-size: clamp(34px, 10.5vw, 52px); }
+    .hero { padding: 22px 10px 56px; gap: 26px; }
+    h1 { font-size: clamp(30px, 9.5vw, 46px); }
     h1 .line { white-space: normal; }
-    h1 .brand { padding: 0 14px 4px; box-shadow: 4px 4px 0 var(--ink); }
-    .kicker { font-size: 13px; }
-    .sub { font-size: 16.5px; }
-    .btn-stamp { font-size: 19px; padding: 12px 30px; }
-    .dosage { margin-top: 32px; }
+    h1 .brand { padding: 0 12px 3px; box-shadow: 3px 3px 0 var(--ink); border-width: 2.5px; }
+    h1 .line:last-child { margin-top: -0.08em; }
+    .kicker { font-size: 12px; padding: 5px 14px; margin-bottom: 18px; }
+    .sub { font-size: 15px; line-height: 1.85; margin: 18px 0 24px; }
+    .btn-stamp { font-size: 17px; padding: 11px 26px; }
+    .cta-alt { font-size: 15px; }
+    .dosage { margin-top: 26px; box-shadow: 4px 4px 0 var(--ink); }
+    .dose { padding: 12px 14px; }
+    .dose .n { font-size: 24px; }
+    .dose .l { font-size: 12.5px; }
     .dose { min-width: 46%; border-bottom: 2.5px dashed var(--ink); }
     .dose:nth-last-child(-n+2) { border-bottom: none; }
 
@@ -870,7 +876,53 @@
     .leaflet { padding: 30px 20px; }
     .leaflet::before { right: 16px; font-size: 12px; }
     .plan { padding: 26px 22px; }
-    .ticker { font-size: 14px; }
+
+    /* تهدئة عامة للموبايل */
+    .sec-head h2 { font-size: clamp(28px, 7.5vw, 38px); }
+    .sec-head p { font-size: 15px; }
+    .sec-head { margin-bottom: 34px; }
+    .sec-head .tag { font-size: 12.5px; padding: 5px 16px; }
+    section { padding: 44px 10px; }
+    .lf { padding: 20px 14px; }
+    .lf h3 { font-size: 17px; }
+    .lf p { font-size: 13.5px; }
+    .ic { width: 48px !important; height: 48px !important; box-shadow: 2px 2px 0 var(--ink); }
+    .ic img { width: 24px; height: 24px; }
+    .vchip h3 { font-size: 18px; }
+    .vchip p { font-size: 14px; }
+    .vchip { padding: 20px 22px; }
+    .vchip-pill { padding: 24px 30px 28px; }
+    .ess { padding: 24px 20px; }
+    .ess h3 { font-size: 18px; }
+    .ess p { font-size: 13.5px; }
+    .ess-punch { font-size: 19px; }
+    .sstep h3 { font-size: 18.5px; }
+    .sstep p { font-size: 14px; }
+    .snum { width: 52px; height: 52px; font-size: 28px; box-shadow: 3px 3px 0 var(--ink); }
+    .warnbox h2 { font-size: 24px; }
+    .warn-intro { font-size: 14.5px; }
+    .warn-item { padding: 16px 6px; }
+    .warn-close { font-size: 14.5px; }
+    .plan .price { font-size: 46px; }
+    .plan h3 { font-size: 21px; }
+    .plan li { font-size: 13.5px; }
+    .annual-note, .extra-note { font-size: 14.5px; }
+    .rack-copy h2 { font-size: clamp(34px, 9vw, 44px); }
+    .rack-big { font-size: clamp(20px, 5.5vw, 26px); }
+    .rack-sub { font-size: 15px; }
+    .faq summary { font-size: 15px; padding: 15px 18px; }
+    .faq .a { font-size: 14px; }
+    .final h2 { font-size: clamp(28px, 8vw, 40px); }
+    .final p { font-size: 15px; }
+    .ticker { font-size: 12.5px; padding: 9px 0; }
+    .domain-notes { font-size: 13.5px; }
+    .price-burst .pb-num { font-size: 30px; }
+    footer { padding: 26px 16px; font-size: 12.5px; }
+    footer .flogo { font-size: 22px; }
+    .legal-line { font-size: 11px; }
+    .leaflet-foot { font-size: 13.5px; line-height: 2.4; }
+    .leaflet-foot b { white-space: nowrap; display: inline-block; padding: 1px 8px; margin: 2px 1px; }
+    .ess-punch b { white-space: nowrap; display: inline-block; }
   }
 </style>
 </head>
