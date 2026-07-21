@@ -1,0 +1,146 @@
+@import url('https://fonts.googleapis.com/css2?family=Lalezar&family=Marhey:wght@400;500;600;700&family=Aref+Ruqaa:wght@400;700&family=Baloo+2:wght@600;700;800&display=swap');
+
+/* ═══════════════════════════════════════════════════════════
+   RIVO — StackCP / HostShop skin
+   Matches rivo.host landing page: blister-foil teal, paper
+   cards, ink borders, hard offset shadows, faded 80s print.
+   Palette is kept in sync with the lander's design tokens.
+   ═══════════════════════════════════════════════════════════ */
+
+:root {
+  --rivo-ink:       #161513;
+  --rivo-pill:      #EFEFEA;
+  --rivo-pill-deep: #D8DCD3;
+  --rivo-teal:      #3FBCAE;
+  --rivo-teal-deep: #27998C;
+  --rivo-stamp:     #C0503C;
+  --rivo-sun:       #E2BC5F;
+}
+
+/* ── page: blister foil + woven texture ── */
+body {
+  background-color: var(--rivo-teal) !important;
+  background-image:
+    repeating-linear-gradient(0deg,  rgba(255,255,255,.07) 0 1px, transparent 1px 3px),
+    repeating-linear-gradient(90deg, rgba(255,255,255,.09) 0 1px, transparent 1px 3px) !important;
+  background-size: 3px 3px !important;
+  color: var(--rivo-ink) !important;
+}
+
+/* ── typography ──
+   Marhey carries both Arabic and Latin, so the panel stays readable
+   for English-speaking clients while still reading as Rivo.
+   Lalezar is display-only, used on headings.                        */
+body, p, li, td, th, label, input, select, textarea,
+.form-control, .form-label, .list-group-item, .btn, .badge, .nav-link {
+  font-family: 'Marhey', 'Aref Ruqaa', 'Baloo 2', sans-serif !important;
+}
+h1, h2, h3, h4, h5, .card-header, .h1, .h2, .h3, .h4 {
+  font-family: 'Lalezar', 'Marhey', 'Baloo 2', sans-serif !important;
+  letter-spacing: .2px;
+}
+
+/* ── cards: paper stock, ink border, hard shadow ── */
+.card, .panel {
+  background-color: var(--rivo-pill) !important;
+  color: var(--rivo-ink) !important;
+  border: 3px solid var(--rivo-ink) !important;
+  border-radius: 16px !important;
+  box-shadow: 6px 6px 0 var(--rivo-ink) !important;
+  background-image: repeating-linear-gradient(0deg, rgba(22,21,19,.022) 0 1px, transparent 1px 4px) !important;
+}
+.card-header {
+  background-color: var(--rivo-ink) !important;
+  color: var(--rivo-pill) !important;
+  border-bottom: 3px solid var(--rivo-ink) !important;
+  font-size: 1.15rem;
+}
+.card-footer { background-color: var(--rivo-pill-deep) !important; color: var(--rivo-ink) !important; }
+.card-body   { background-color: transparent !important; }
+
+/* ── buttons: pill, ink border, hard offset ── */
+.btn {
+  border-radius: 999px !important;
+  border: 2.5px solid var(--rivo-ink) !important;
+  box-shadow: 3px 3px 0 var(--rivo-ink) !important;
+  font-weight: 700 !important;
+  transition: transform .1s, box-shadow .1s !important;
+}
+.btn:active { transform: translate(3px,3px) !important; box-shadow: 0 0 0 var(--rivo-ink) !important; }
+.btn-primary   { background-color: var(--rivo-teal) !important; color: var(--rivo-ink) !important; }
+.btn-primary:hover { background-color: var(--rivo-teal-deep) !important; color: var(--rivo-pill) !important; }
+.btn-secondary,
+.btn-outline-secondary { background-color: var(--rivo-pill) !important; color: var(--rivo-ink) !important; }
+.btn-danger    { background-color: var(--rivo-stamp) !important; color: #fff !important; }
+.btn-success   { background-color: var(--rivo-teal-deep) !important; color: var(--rivo-pill) !important; }
+.btn-link      { color: var(--rivo-teal-deep) !important; box-shadow: none !important; border: none !important; }
+
+/* ── forms ── */
+.form-control, .form-select, input[type=text], input[type=email], input[type=password] {
+  background-color: #fff !important;
+  border: 2.5px solid var(--rivo-ink) !important;
+  border-radius: 12px !important;
+  color: var(--rivo-ink) !important;
+}
+.form-control:focus, .form-select:focus {
+  box-shadow: 3px 3px 0 var(--rivo-teal) !important;
+  border-color: var(--rivo-ink) !important;
+}
+.form-label { font-weight: 600 !important; }
+
+/* ── nav / header ── */
+.navbar, .navbar-dark, header.navbar {
+  background-color: var(--rivo-ink) !important;
+  border-bottom: 3px solid var(--rivo-ink) !important;
+}
+.navbar .nav-link, .navbar a { color: var(--rivo-pill) !important; }
+.navbar .nav-link:hover { color: var(--rivo-teal) !important; }
+
+/* ── lists (shop categories, service lists) ── */
+.list-group-item {
+  background-color: var(--rivo-pill) !important;
+  color: var(--rivo-ink) !important;
+  border-color: rgba(22,21,19,.25) !important;
+}
+.list-group-item-action:hover { background-color: var(--rivo-pill-deep) !important; }
+
+/* ── tables ── */
+.table { color: var(--rivo-ink) !important; }
+.table thead th {
+  background-color: var(--rivo-ink) !important;
+  color: var(--rivo-pill) !important;
+  border-color: var(--rivo-ink) !important;
+}
+
+/* ── badges, alerts, pills ── */
+.badge { border: 2px solid var(--rivo-ink) !important; border-radius: 999px !important; color: var(--rivo-ink) !important; }
+.badge.bg-primary, .badge.bg-info { background-color: var(--rivo-teal) !important; }
+.badge.bg-danger  { background-color: var(--rivo-stamp) !important; color: #fff !important; }
+.badge.bg-warning { background-color: var(--rivo-sun) !important; }
+.alert {
+  border: 2.5px solid var(--rivo-ink) !important;
+  border-radius: 12px !important;
+  box-shadow: 3px 3px 0 var(--rivo-ink) !important;
+}
+.alert-danger  { background-color: var(--rivo-stamp) !important; color: #fff !important; }
+.alert-success { background-color: var(--rivo-teal) !important; color: var(--rivo-ink) !important; }
+
+/* ── modals / dropdowns ── */
+.modal-content, .dropdown-menu {
+  background-color: var(--rivo-pill) !important;
+  border: 3px solid var(--rivo-ink) !important;
+  border-radius: 16px !important;
+  box-shadow: 6px 6px 0 var(--rivo-ink) !important;
+}
+.dropdown-item { color: var(--rivo-ink) !important; }
+.dropdown-item:hover { background-color: var(--rivo-teal) !important; }
+
+/* ── links ── */
+a { color: var(--rivo-teal-deep); }
+a:hover { color: var(--rivo-ink); }
+
+/* ── keep it usable on small screens ── */
+@media (max-width: 768px) {
+  .card { box-shadow: 4px 4px 0 var(--rivo-ink) !important; }
+  .btn  { box-shadow: 2px 2px 0 var(--rivo-ink) !important; }
+}
