@@ -391,19 +391,20 @@
     background: #F2F1EC;
     clip-path: polygon(100.0% 50.0%, 86.7% 59.8%, 93.3% 75.0%, 76.9% 76.9%, 75.0% 93.3%, 59.8% 86.7%, 50.0% 100.0%, 40.2% 86.7%, 25.0% 93.3%, 23.1% 76.9%, 6.7% 75.0%, 13.3% 59.8%, 0.0% 50.0%, 13.3% 40.2%, 6.7% 25.0%, 23.1% 23.1%, 25.0% 6.7%, 40.2% 13.3%, 50.0% 0.0%, 59.8% 13.3%, 75.0% 6.7%, 76.9% 23.1%, 93.3% 25.0%, 86.7% 40.2%);
   }
-  .pills-visual { display:flex; align-items:flex-end; justify-content:flex-start; margin-bottom: 12px; }
-  .pills-visual img { filter: drop-shadow(4px 5px 0 rgba(22,21,19,.28)); }
-  .pv-1 img { height: 110px; transform: rotate(-3deg); }
-  .pv-3 img { height: 130px; transform: rotate(6deg); }
-  .pv-10 {
+  .pills-visual {
     position: absolute;
-    top: -52px; left: 12%;
-    width: 76%;
+    top: -34px; left: -26px;
     margin: 0;
     z-index: 2;
+    pointer-events: none;
   }
-  .pv-10 img { width: 100%; transform: rotate(-14deg); }
-  .plan:has(.pv-10) { padding-top: 100px; }
+  .pills-visual img { filter: drop-shadow(4px 5px 0 rgba(22,21,19,.28)); }
+  .pv-1 img { height: 130px; transform: rotate(-32deg); }
+  .pv-3 img { height: 190px; transform: rotate(-52deg); }
+  .pv-3 { top: -48px; left: -34px; }
+  .pv-10 { top: -58px; left: -60px; width: 340px; }
+  .pv-10 img { width: 100%; transform: rotate(-30deg); }
+  .plan { overflow: visible; }
 
   .ic img, .ess-num img { width: 30px; height: 30px; display:block; }
 
@@ -740,15 +741,12 @@
   }
   .rack-sub { font-size: 17px; line-height: 1.95; color:#0e2e2a; max-width: 44ch; }
   .rack-wrap {
-    border: var(--border);
-    border-radius: 20px;
-    overflow:hidden;
-    box-shadow: 8px 8px 0 var(--ink);
     transform: rotate(-.6deg);
     justify-self: start;
-    max-width: 520px;
+    max-width: 560px;
   }
-  .rack-wrap img { display:block; width:100%; height:auto; }
+  .rack-wrap img { display:block; width:100%; height:auto; filter: drop-shadow(10px 12px 0 rgba(22,21,19,.3)); }
+  .rack-sub a { color: var(--ink); font-weight: 700; text-decoration: underline wavy #F2F1EC 2px; text-underline-offset: 4px; }
 
 
   /* ─────────── ANIMATION (٩٠s cartoon) ─────────── */
@@ -1383,12 +1381,12 @@ $ <span class="cursor">▊</span></pre>
 <section id="rack">
   <div class="rack-grid">
     <div class="rack-copy">
-      <h2>ما يغركش الشكل.</h2>
-      <p class="rack-big"><b>نظام استضافة محترم وقوي</b> — حاطين عليه مشاريع بالآلاف.</p>
-      <p class="rack-sub">نفس البنية التحتية اللي شغّالة عليها مواقع شركات ووكالات من سنين. الشكل لعبة، بس اللي تحته شغل جد.</p>
+      <h2>متتخدعش بالشكل اللطيف.</h2>
+      <p class="rack-big"><b>نظام استضافة محترم وقوي</b> — حاطين عليه مشاريعنا الكبيرة.</p>
+      <p class="rack-sub">نفس البنية التحتية اللي بنستخدمها في <a href="https://aspired.agency" target="_blank" rel="noopener">ASPIRED</a> — شغّالة عليها مواقع شركات ووكالات من سنين. الشكل لعبة، بس الخدمة قوية بجد.</p>
     </div>
     <div class="rack-wrap">
-      <img src="assets/rivo-rack.jpg" alt="سيرفرات ريفو" loading="lazy">
+      <img src="assets/rivo-rack.png" alt="سيرفرات ريفو" loading="lazy">
     </div>
   </div>
 </section>
