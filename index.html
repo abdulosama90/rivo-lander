@@ -863,6 +863,47 @@
   .lm-body p b { color: var(--ink); }
   .lm-owner { margin-top: 20px; border-top: 2px dashed var(--ink); padding-top: 14px; font-weight: 600; }
 
+  /* ─────────── LEGAL DISCLAIMER ─────────── */
+  #disclaimer { padding-top: 20px; padding-bottom: 70px; }
+  .dc-box {
+    max-width: 900px; margin: 0 auto;
+    background: var(--pill);
+    border: 3px solid var(--stamp);
+    border-radius: 18px;
+    box-shadow: -7px 7px 0 var(--sun), 5px 5px 0 var(--ink);
+    padding: 40px 34px 30px;
+    position: relative;
+    background-image: repeating-linear-gradient(0deg, rgba(22,21,19,.025) 0 1px, transparent 1px 4px);
+  }
+  .dc-stamp {
+    position: absolute; top: -19px; right: 32px;
+    background: var(--stamp); color: #fff;
+    font-family: var(--f-loud); font-weight: 700; font-size: 15px;
+    padding: 8px 22px; border-radius: 999px;
+    border: 2.5px solid var(--ink);
+    transform: rotate(-2deg);
+    box-shadow: -4px 4px 0 var(--sun), 3px 3px 0 var(--ink);
+  }
+  .dc-box p { font-size: 17px; line-height: 1.95; color: #33362f; margin-bottom: 14px; }
+  .dc-box p b { color: var(--ink); }
+  .dc-lead {
+    font-family: var(--f-loud); font-weight: 700;
+    font-size: 20px !important; color: var(--ink) !important;
+    border-bottom: 2.5px dashed var(--stamp);
+    padding-bottom: 14px; margin-bottom: 18px !important;
+  }
+  .dc-lead b { color: var(--stamp) !important; }
+  .dc-note {
+    font-size: 15px !important; margin-bottom: 0 !important;
+    border-top: 2px solid rgba(192,80,60,.35); padding-top: 14px; color: #5a5d54 !important;
+  }
+  @media (max-width: 980px) {
+    .dc-box { padding: 34px 20px 24px; box-shadow: -5px 5px 0 var(--sun), 4px 4px 0 var(--ink); }
+    .dc-stamp { right: 16px; font-size: 13px; }
+    .dc-lead { font-size: 17.5px !important; }
+    .dc-box p { font-size: 15.5px; }
+  }
+
   footer {
     background: var(--ink); color: var(--pill);
     border-top: var(--border);
@@ -1506,6 +1547,17 @@ $ <span class="cursor">▊</span></pre>
 </section>
 
 </main>
+
+<!-- ═══════════ LEGAL DISCLAIMER ═══════════ -->
+<section id="disclaimer">
+  <div class="dc-box">
+    <span class="dc-stamp">تنويه مهم — اقرأه</span>
+    <p class="dc-lead">ريفو للاستضافة <b>مش شركة أدوية</b>، ومالهاش أي علاقة بدواء «ريفو» المصري ولا بالشركة المصنِّعة له.</p>
+    <p>الاسم والتصميم مستوحيين من الحنين لعلامة مصرية عريقة عاشت مع أجيال — استخدمناها كـ<b>استعارة</b> وبس: «قرص واحد يخلّصك من وجع الدماغ». إحنا شركة استضافة مواقع، ومفيش أي ادعاء بشراكة أو رعاية أو ترخيص أو انتساب لأي شركة أدوية.</p>
+    <p><b>كل الحقوق والعلامات التجارية الخاصة بدواء «ريفو» محفوظة لأصحابها الشرعيين.</b> ولنا كل التقدير والاحترام لصناعة الدواء المصرية اللي خدمت المصريين لعقود طويلة.</p>
+    <p class="dc-note">لو في أي استفسار قانوني بخصوص الاسم أو العلامة، كلّمنا وهنستجيب فورًا.</p>
+  </div>
+</section>
 
 <footer>
   <span class="flogo">RiVO</span>
