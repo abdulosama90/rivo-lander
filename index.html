@@ -194,8 +194,8 @@
   /* price starburst — لصقة السعر */
   .price-burst {
     position: absolute;
-    top: -8%; left: -6%;
-    width: 44%; aspect-ratio: 1;
+    bottom: -12%; right: -5%;
+    width: 33%; aspect-ratio: 1;
     z-index: 3;
     display: flex; flex-direction: column;
     align-items: center; justify-content: center;
@@ -203,12 +203,12 @@
     color: #F2F1EC;
     background: var(--stamp);
     clip-path: polygon(100.00% 50.00%,91.84% 53.66%,99.24% 58.68%,90.57% 60.87%,96.98% 67.10%,88.06% 67.75%,93.30% 75.00%,84.40% 74.09%,88.30% 82.14%,79.70% 79.70%,82.14% 88.30%,74.09% 84.40%,75.00% 93.30%,67.75% 88.06%,67.10% 96.98%,60.87% 90.57%,58.68% 99.24%,53.66% 91.84%,50.00% 100.00%,46.34% 91.84%,41.32% 99.24%,39.13% 90.57%,32.90% 96.98%,32.25% 88.06%,25.00% 93.30%,25.91% 84.40%,17.86% 88.30%,20.30% 79.70%,11.70% 82.14%,15.60% 74.09%,6.70% 75.00%,11.94% 67.75%,3.02% 67.10%,9.43% 60.87%,0.76% 58.68%,8.16% 53.66%,0.00% 50.00%,8.16% 46.34%,0.76% 41.32%,9.43% 39.13%,3.02% 32.90%,11.94% 32.25%,6.70% 25.00%,15.60% 25.91%,11.70% 17.86%,20.30% 20.30%,17.86% 11.70%,25.91% 15.60%,25.00% 6.70%,32.25% 11.94%,32.90% 3.02%,39.13% 9.43%,41.32% 0.76%,46.34% 8.16%,50.00% 0.00%,53.66% 8.16%,58.68% 0.76%,60.87% 9.43%,67.10% 3.02%,67.75% 11.94%,75.00% 6.70%,74.09% 15.60%,82.14% 11.70%,79.70% 20.30%,88.30% 17.86%,84.40% 25.91%,93.30% 25.00%,88.06% 32.25%,96.98% 32.90%,90.57% 39.13%,99.24% 41.32%,91.84% 46.34%);
-    transform: rotate(-10deg);
-    filter: drop-shadow(-6px 6px 0 var(--sun)) drop-shadow(3px 4px 0 rgba(22,21,19,.4));
+    transform: rotate(-8deg);
+    filter: drop-shadow(-9px 8px 0 var(--sun)) drop-shadow(2px 3px 0 rgba(22,21,19,.35));
   }
-  .price-burst .pb-from { font-family: var(--f-loud); font-weight: 600; font-size: clamp(11px, 1.1vw, 15px); }
-  .price-burst .pb-num { font-family: var(--f-logo); font-size: clamp(44px, 5.2vw, 74px); line-height: 1; }
-  .price-burst .pb-unit { font-family: var(--f-loud); font-weight: 700; font-size: clamp(12px, 1.3vw, 17px); }
+  .price-burst .pb-from { font-family: var(--f-loud); font-weight: 600; font-size: clamp(10px, 1vw, 13px); }
+  .price-burst .pb-num { font-family: var(--f-logo); font-size: clamp(34px, 3.8vw, 54px); line-height: 1; }
+  .price-burst .pb-unit { font-family: var(--f-loud); font-weight: 700; font-size: clamp(11px, 1.1vw, 14px); }
   .pack.done:hover .price-burst { animation: rivo-spin-settle .8s ease; }
 
   .pack-box { position: relative; z-index: 1; }
@@ -780,7 +780,7 @@
     .dose:nth-last-child(-n+2) { border-bottom: none; }
 
     .pack::before { right: 0; top: -14%; width: 64%; }
-    .price-burst { width: 50%; top: -12%; left: -2%; }
+    .price-burst { width: 42%; bottom: -14%; right: 0; }
     .rx { margin-inline-start: 0; margin-top: 80px; width: min(330px, 94%); }
     .made-egypt { bottom: -40px; left: 0; font-size: 13.5px; padding: 6px 14px; }
     .visual { padding-bottom: 30px; }
