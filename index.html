@@ -1,0 +1,1034 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>ريفو — استضافة من غير وجع دماغ</title>
+<meta name="description" content="استضافة مصرية لمشاريع الـ AI بالجنيه المصري. دومين + استضافة + SSL + إيميل. من ١٤٩ ج.م/شهر، تُدفع ٦ شهور مقدمًا.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Lalezar&family=Marhey:wght@400;500;600;700&family=Noto+Kufi+Arabic:wght@400;500;600;700&family=Baloo+2:wght@600;700;800&display=swap" rel="stylesheet">
+<style>
+  /* ─────────────────────────────────────────────
+     RIVO DESIGN TOKENS — "الأسبرين بتاع الاستضافة"
+     ───────────────────────────────────────────── */
+  :root {
+    --ink:        #161513;
+    --pill:       #EFEFEA;
+    --pill-deep:  #D8DCD3;
+    --teal:       #3FBCAE;
+    --teal-deep:  #27998C;
+    --stamp:      #C0503C;   /* أحمر طباعة باهت */
+    --sun:        #E2BC5F;   /* أصفر مستردة قديم */   /* الأصفر اللي ورا الأحمر */
+
+    --f-logo: 'Lalezar', 'Baloo 2', sans-serif;
+    --f-loud: 'Marhey', sans-serif;
+    --f-body: 'Noto Kufi Arabic', sans-serif;
+    --f-latin: 'Baloo 2', sans-serif;
+
+    --border: 3px solid var(--ink);
+    --shadow-offset: 6px 6px 0 var(--ink);
+  }
+
+  * { margin:0; padding:0; box-sizing:border-box; }
+  html { scroll-behavior:smooth; }
+
+  body {
+    font-family: var(--f-body);
+    background-color: var(--teal);
+    color: var(--ink);
+    background-image:
+      repeating-linear-gradient(0deg,  rgba(255,255,255,.07) 0 1px, transparent 1px 3px),
+      repeating-linear-gradient(90deg, rgba(255,255,255,.09) 0 1px, transparent 1px 3px);
+    background-size: 3px 3px;
+  }
+
+  ::selection { background: var(--ink); color: var(--teal); }
+
+  /* حبيبات طباعة قديمة فوق الصفحة كلها */
+  .grain {
+    position: fixed; inset: 0; z-index: 60;
+    pointer-events: none;
+    background-image:
+      radial-gradient(rgba(22,21,19,.5) .6px, transparent 1.1px),
+      radial-gradient(rgba(255,255,255,.55) .6px, transparent 1.1px);
+    background-size: 5px 7px, 9px 11px;
+    background-position: 0 0, 3px 5px;
+    opacity: .16;
+    mix-blend-mode: overlay;
+  }
+
+  .perf {
+    position: fixed; top:0; bottom:0; width:34px; z-index:50;
+    background:
+      repeating-linear-gradient(to bottom, var(--ink) 0 22px, transparent 22px 44px);
+    background-color: var(--teal);
+    border-left: var(--border);
+  }
+  .perf.left  { left:0;  border-left:none; border-right: var(--border); }
+  .perf.right { right:0; }
+
+  main { margin: 0 44px; }
+
+  /* ─────────── NAV ─────────── */
+  nav {
+    background: var(--ink);
+    border-bottom: var(--border);
+    display:flex; align-items:center; gap:28px;
+    padding: 14px 34px;
+    position: sticky; top:0; z-index:40;
+  }
+  .logo-img {
+    height: 54px; width: auto; display: block;
+    transform: rotate(-3deg);
+  }
+  nav a { color: var(--pill); text-decoration:none; font-family: var(--f-loud); font-weight:500; font-size:16px; }
+  nav a:hover { color: var(--teal); text-decoration: underline wavy 2px; text-underline-offset: 5px; }
+  .nav-spacer { flex:1; }
+
+  .btn {
+    display:inline-block;
+    font-family: var(--f-loud); font-weight:700;
+    border: var(--border);
+    padding: 10px 26px;
+    border-radius: 999px;
+    text-decoration:none;
+    box-shadow: 4px 4px 0 var(--ink);
+    transition: transform .1s, box-shadow .1s;
+    cursor:pointer;
+  }
+  .btn:active { transform: translate(4px,4px); box-shadow: 0 0 0 var(--ink); }
+  .btn-teal { background: var(--pill); color: var(--ink); }
+  .btn-stamp {
+    background: var(--ink); color: var(--pill);
+    font-size: 24px; padding: 14px 44px;
+    transform: rotate(-2deg);
+    box-shadow: 4px 4px 0 rgba(22,21,19,.35);
+  }
+  .btn-stamp:hover { transform: rotate(-2deg) scale(1.03); }
+
+  /* ─────────── HERO ─────────── */
+  .hero {
+    display:grid;
+    grid-template-columns: 1.1fr .9fr;
+    gap: 40px;
+    padding: 44px 40px 64px;
+    align-items: center;
+    max-width: 1240px; margin: 0 auto;
+  }
+  .kicker {
+    display:inline-block;
+    font-family: var(--f-loud); font-weight:600; font-size:15px;
+    border: 2.5px solid var(--ink);
+    border-radius: 999px;
+    padding: 6px 18px;
+    transform: rotate(-1.5deg);
+    background: var(--pill);
+    margin-bottom: 26px;
+  }
+  .kicker b { color: var(--stamp); text-shadow: 1.5px 1.5px 0 var(--sun); }
+
+  h1 {
+    font-family: var(--f-logo);
+    font-size: clamp(52px, 6.5vw, 88px);
+    line-height: 1.12;
+    font-weight: 400;
+  }
+  h1 .line { display:block; white-space:nowrap; }
+  h1 .line:last-child { margin-top: 10px; }
+  h1 .hl { color: #F2F1EC; text-shadow: 3px 3px 0 rgba(22,21,19,.25); }
+  h1 .brand {
+    display:inline-block;
+    color: var(--ink);
+    background: var(--pill);
+    padding: 0 22px 6px;
+    border: var(--border);
+    border-radius: 18px;
+    box-shadow: var(--shadow-offset);
+    transform: rotate(-2deg) translateY(6px);
+    margin-inline-end: 18px;
+    margin-inline-start: 6px;
+  }
+  h1 .line { line-height: 1.28; }
+
+  .sub {
+    font-size: 19px; line-height: 1.9;
+    margin: 24px 0 30px;
+    max-width: 52ch;
+    color: #0e2e2a;
+  }
+  .sub b { color: var(--ink); }
+
+  .cta-row { display:flex; align-items:center; gap:28px; flex-wrap:wrap; }
+  .cta-alt {
+    font-family: var(--f-loud); font-weight:600;
+    color: var(--ink); font-size: 17px;
+    text-decoration: underline wavy #F2F1EC 2px;
+    text-underline-offset: 6px;
+  }
+
+  .dosage {
+    margin-top: 48px;
+    display:flex; gap:0; flex-wrap:wrap;
+    border: var(--border);
+    background: var(--pill);
+    box-shadow: var(--shadow-offset);
+    border-radius: 14px;
+    overflow:hidden;
+  }
+  .dose { flex:1; min-width: 140px; padding: 16px 18px; border-left: 2.5px dashed var(--ink); font-family: var(--f-loud); }
+  .dose:last-child { border-left:none; }
+  .dose .n { font-family: var(--f-logo); font-size: 30px; display:block; color: var(--teal-deep); }
+  .dose .l { font-size: 14px; font-weight:500; }
+
+  .visual { position: relative; display:flex; flex-direction:column; align-items:center; }
+  .pack { position: relative; width: min(520px, 100%); }
+  .pack::before {
+    content:"";
+    position: absolute;
+    width: 78%; aspect-ratio: 1;
+    top: -24%; right: -10%;
+    background: #F2F1EC;
+    clip-path: polygon(100.00% 50.00%,91.84% 53.66%,99.24% 58.68%,90.57% 60.87%,96.98% 67.10%,88.06% 67.75%,93.30% 75.00%,84.40% 74.09%,88.30% 82.14%,79.70% 79.70%,82.14% 88.30%,74.09% 84.40%,75.00% 93.30%,67.75% 88.06%,67.10% 96.98%,60.87% 90.57%,58.68% 99.24%,53.66% 91.84%,50.00% 100.00%,46.34% 91.84%,41.32% 99.24%,39.13% 90.57%,32.90% 96.98%,32.25% 88.06%,25.00% 93.30%,25.91% 84.40%,17.86% 88.30%,20.30% 79.70%,11.70% 82.14%,15.60% 74.09%,6.70% 75.00%,11.94% 67.75%,3.02% 67.10%,9.43% 60.87%,0.76% 58.68%,8.16% 53.66%,0.00% 50.00%,8.16% 46.34%,0.76% 41.32%,9.43% 39.13%,3.02% 32.90%,11.94% 32.25%,6.70% 25.00%,15.60% 25.91%,11.70% 17.86%,20.30% 20.30%,17.86% 11.70%,25.91% 15.60%,25.00% 6.70%,32.25% 11.94%,32.90% 3.02%,39.13% 9.43%,41.32% 0.76%,46.34% 8.16%,50.00% 0.00%,53.66% 8.16%,58.68% 0.76%,60.87% 9.43%,67.10% 3.02%,67.75% 11.94%,75.00% 6.70%,74.09% 15.60%,82.14% 11.70%,79.70% 20.30%,88.30% 17.86%,84.40% 25.91%,93.30% 25.00%,88.06% 32.25%,96.98% 32.90%,90.57% 39.13%,99.24% 41.32%,91.84% 46.34%);
+  }
+  .pack-box { position: relative; z-index: 1; }
+  .pack-wrap { z-index: 2; }
+  .pack-box {
+    width: 92%; display:block; margin: 0 auto;
+    transform: rotate(2deg);
+    filter: drop-shadow(8px 10px 0 rgba(22,21,19,.25));
+  }
+  .pack-wrap {
+    position: absolute;
+    width: 62%;
+    bottom: -14%; left: -4%;
+    transform: rotate(-6deg);
+    filter: drop-shadow(6px 8px 0 rgba(22,21,19,.28));
+  }
+  .made-egypt {
+    position: absolute;
+    bottom: -42px; left: -14px;
+    display:flex; align-items:center; gap: 10px;
+    background: var(--pill);
+    border: 2.5px solid var(--ink);
+    border-radius: 999px;
+    padding: 7px 18px;
+    transform: rotate(2.5deg);
+    box-shadow: 3px 3px 0 var(--ink);
+    font-family: var(--f-loud); font-weight:700; font-size: 15px;
+    z-index: 3;
+  }
+  .made-egypt svg { width: 34px; height: auto; display:block; }
+
+  .rx {
+    margin-top: 120px;
+    margin-inline-start: 25%;
+    width: 330px;
+    background: var(--pill-deep);
+    border: var(--border);
+    border-radius: 14px;
+    box-shadow: var(--shadow-offset);
+    padding: 16px 20px;
+    transform: rotate(2deg);
+    background-image: repeating-linear-gradient(45deg, rgba(22,21,19,.04) 0 2px, transparent 2px 6px);
+  }
+  .rx h3 { font-family: var(--f-loud); font-weight:700; font-size:18px; margin-bottom:8px; }
+  .rx ul { list-style:none; }
+  .rx li { font-size: 14px; font-weight:500; padding: 3px 0; }
+  .rx li::before { content:"✔ "; font-weight:700; }
+  .rx .dose-note {
+    margin-top:10px; background: var(--teal);
+    border: 2px solid var(--ink); border-radius: 8px;
+    text-align:center; font-family: var(--f-loud); font-weight:700; font-size:13px;
+    padding: 4px;
+  }
+
+  /* ─────────── TICKER ─────────── */
+  .ticker {
+    background: var(--ink); color: var(--pill);
+    border-top: var(--border); border-bottom: var(--border);
+    overflow:hidden; white-space:nowrap;
+    font-family: var(--f-loud); font-size: 17px;
+    padding: 12px 0;
+  }
+  .ticker span { display:inline-block; padding: 0 18px; }
+  .ticker .t { color: var(--teal); }
+
+  /* ─────────── SECTION SHELL ─────────── */
+  section { max-width: 1240px; margin: 0 auto; padding: 80px 40px; }
+  .sec-head { text-align:center; margin-bottom: 50px; }
+  .sec-head .tag {
+    display:inline-block;
+    font-family: var(--f-loud); font-weight:600; font-size:14px;
+    background: var(--ink); color: var(--pill);
+    padding: 6px 20px; border-radius: 999px;
+    transform: rotate(-1deg);
+    margin-bottom: 16px;
+  }
+  .sec-head h2 { font-family: var(--f-logo); font-size: clamp(38px, 4.5vw, 58px); line-height: 1.2; }
+  .sec-head p { font-size: 18px; color:#0e2e2a; margin-top: 10px; }
+
+  /* ─────────── LEAFLET (النشرة الداخلية) ─────────── */
+  .leaflet {
+    background: var(--pill-deep);
+    border: var(--border);
+    border-radius: 22px;
+    box-shadow: var(--shadow-offset);
+    padding: 44px;
+    position: relative;
+    background-image: repeating-linear-gradient(0deg, rgba(22,21,19,.025) 0 1px, transparent 1px 4px);
+  }
+  .leaflet::before {
+    content:"كل ده متضمن في السعر";
+    position:absolute; top:-18px; right: 40px;
+    background: var(--ink); color: var(--pill);
+    font-family: var(--f-loud); font-size: 14px; font-weight:600;
+    padding: 6px 18px; border-radius: 999px;
+    transform: rotate(1.5deg);
+  }
+  .leaflet-grid {
+    display:grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 0;
+  }
+  .lf {
+    padding: 26px 22px;
+    border-bottom: 2.5px dashed var(--ink);
+  }
+  .lf:not(:nth-child(3n)) { border-left: 2.5px dashed var(--ink); }
+  .lf:nth-last-child(-n+3) { border-bottom: none; }
+  .lf .ic {
+    font-size: 30px; display:inline-block; margin-bottom: 10px;
+    background: var(--teal);
+    border: 2.5px solid var(--ink);
+    border-radius: 12px;
+    width: 56px; height: 56px;
+    display:flex; align-items:center; justify-content:center;
+    box-shadow: 3px 3px 0 var(--ink);
+  }
+  .lf h3 { font-family: var(--f-loud); font-weight:700; font-size: 19px; margin: 12px 0 6px; }
+  .lf p { font-size: 14.5px; line-height: 1.8; color:#4a4d45; }
+  .lf p b { color: var(--ink); }
+
+  .leaflet-foot {
+    margin-top: 34px; text-align:center;
+    font-family: var(--f-loud); font-weight:600; font-size:16px;
+    border-top: var(--border); padding-top: 24px;
+  }
+  .leaflet-foot b { background: var(--teal); padding: 2px 10px; border-radius: 8px; border:2px solid var(--ink); }
+
+  /* ─────────── ESSENTIALS ─────────── */
+  .essentials-grid { display:grid; grid-template-columns: repeat(3, 1fr); gap: 28px; }
+  .ess {
+    background: var(--pill);
+    border: var(--border); border-radius: 18px;
+    box-shadow: var(--shadow-offset);
+    padding: 30px 28px;
+  }
+  .ess:nth-child(1) { transform: rotate(-.6deg); }
+  .ess:nth-child(3) { transform: rotate(.6deg); }
+  .ess-num {
+    font-size: 26px;
+    background: var(--teal);
+    border: 2.5px solid var(--ink);
+    border-radius: 12px;
+    width: 54px; height: 54px;
+    display:flex; align-items:center; justify-content:center;
+    box-shadow: 3px 3px 0 var(--ink);
+    margin-bottom: 16px;
+  }
+  .ess h3 { font-family: var(--f-loud); font-weight:700; font-size: 22px; margin-bottom: 10px; }
+  .ess p { font-size: 15px; line-height: 1.95; color:#4a4d45; }
+  .ess p b { color: var(--ink); }
+  .ess-punch {
+    margin-top: 40px; text-align:center;
+    font-family: var(--f-logo); font-size: clamp(26px, 3vw, 38px);
+  }
+  .ess-punch b {
+    background: var(--pill); border: var(--border);
+    padding: 2px 20px 6px; border-radius: 14px;
+    box-shadow: 5px 5px 0 var(--ink);
+    display:inline-block; transform: rotate(-1deg);
+  }
+
+  /* ─────────── ICON PLACEHOLDERS (بديل مؤقت لحد ما تيجي الصور) ─────────── */
+  .mini-burst {
+    display:block; width: 26px; height: 26px;
+    background: #F2F1EC;
+    clip-path: polygon(100.0% 50.0%, 86.7% 59.8%, 93.3% 75.0%, 76.9% 76.9%, 75.0% 93.3%, 59.8% 86.7%, 50.0% 100.0%, 40.2% 86.7%, 25.0% 93.3%, 23.1% 76.9%, 6.7% 75.0%, 13.3% 59.8%, 0.0% 50.0%, 13.3% 40.2%, 6.7% 25.0%, 23.1% 23.1%, 25.0% 6.7%, 40.2% 13.3%, 50.0% 0.0%, 59.8% 13.3%, 75.0% 6.7%, 76.9% 23.1%, 93.3% 25.0%, 86.7% 40.2%);
+  }
+  .pills-visual { display:flex; gap: 7px; align-items:center; margin-bottom: 10px; min-height: 36px; }
+  .pills-visual .p1 {
+    width: 26px; height: 26px; border-radius: 50%;
+    background: #F2F1EC;
+    border: 2.5px solid var(--ink);
+    box-shadow: 2px 2px 0 var(--ink);
+    display:inline-block;
+  }
+  .pills-ten { flex-wrap: wrap; max-width: 180px; row-gap: 6px; }
+  .pills-ten .p1 { width: 20px; height: 20px; }
+  .plan.best .pills-visual .p1 { box-shadow: 2px 2px 0 rgba(244,238,226,.4); }
+
+  /* ─────────── VIBE (SSH / GitHub / Deploy) ─────────── */
+  .vibe-grid { display:grid; grid-template-columns: 1fr 1fr; gap: 44px; align-items:center; }
+  .vibe-copy { display:flex; flex-direction:column; gap: 26px; }
+  .vchip { padding: 22px 26px; background: var(--pill); }
+  .vchip h3 { font-family: var(--f-loud); font-weight:700; font-size: 20px; margin-bottom: 8px; }
+  .vchip p { font-size: 15px; line-height: 1.9; color:#4a4d45; }
+  .vchip p b { color: var(--ink); }
+  .vchip-pill {
+    border: var(--border); border-radius: 999px 24px 999px 24px;
+    box-shadow: 6px 6px 0 var(--ink);
+    transform: rotate(-.7deg);
+  }
+  .vchip-dash {
+    background: transparent;
+    border: 3px dashed var(--ink); border-radius: 18px;
+    transform: rotate(.5deg);
+  }
+  .vchip-dash p { color: #123f3a; }
+  .vchip-dash h3, .vchip-dash p b { color: var(--ink); }
+  .vchip-stamp {
+    border: var(--border); border-radius: 6px;
+    box-shadow: 6px 6px 0 rgba(22,21,19,.3);
+    transform: rotate(-1.2deg);
+    background:
+      linear-gradient(var(--pill), var(--pill)) padding-box,
+      repeating-linear-gradient(90deg, var(--ink) 0 14px, transparent 14px 22px);
+    border-image: none;
+  }
+
+  .term {
+    background: var(--ink);
+    border: var(--border);
+    border-radius: 16px;
+    box-shadow: 8px 8px 0 rgba(22,21,19,.35);
+    overflow:hidden;
+    transform: rotate(.6deg);
+    align-self: start;
+  }
+  .term-head {
+    display:flex; align-items:center; gap:8px;
+    background: #23211e;
+    border-bottom: 2.5px solid #000;
+    padding: 12px 16px;
+  }
+  .td { width:14px; height:14px; border-radius:50%; border:2px solid #000; display:inline-block; }
+  .term-title {
+    color: var(--pill); opacity:.6;
+    font-family: 'Baloo 2', monospace; font-size: 13px;
+    margin-inline-start: 10px;
+  }
+  .term-body {
+    font-family: 'Menlo', 'Courier New', monospace;
+    font-size: 15px; line-height: 2;
+    color: var(--pill);
+    padding: 24px 26px;
+    white-space: pre-wrap;
+  }
+  .term-body .ok { color: var(--teal); font-weight:bold; }
+  .term-body .live {
+    color: var(--ink);
+    background: var(--teal);
+    padding: 2px 10px;
+    border-radius: 6px;
+    font-weight: bold;
+  }
+  .term-body .cursor { color: var(--teal); animation: blink 1.1s steps(1) infinite; }
+  @keyframes blink { 50% { opacity: 0; } }
+
+  /* ─────────── STEPS (من غير كروت) ─────────── */
+  .steps-flow {
+    display:flex; align-items:flex-start; justify-content:center;
+    gap: 8px; flex-wrap:wrap;
+  }
+  .sstep { max-width: 290px; padding: 0 8px; }
+  .sstep:nth-child(1) { transform: rotate(-.8deg); }
+  .sstep:nth-child(3) { transform: translateY(46px) rotate(.6deg); }
+  .sstep:nth-child(5) { transform: translateY(14px) rotate(-.5deg); }
+  .snum {
+    font-family: var(--f-logo); font-size: 34px; line-height:1;
+    width: 62px; height: 62px;
+    display:flex; align-items:center; justify-content:center;
+    background: var(--pill);
+    border: var(--border);
+    border-radius: 50% 46% 52% 48% / 48% 52% 46% 54%;
+    box-shadow: 4px 4px 0 var(--ink);
+    margin-bottom: 14px;
+    transform: rotate(-4deg);
+  }
+  .sstep h3 { font-family: var(--f-loud); font-weight:700; font-size: 21px; margin-bottom: 8px; }
+  .sstep p { font-size: 15px; line-height: 1.85; color:#0e2e2a; }
+  .sstep p b { color: var(--ink); }
+  .sarrow {
+    width: 120px; flex-shrink:0;
+    color: var(--ink);
+    margin-top: 40px;
+    opacity:.85;
+  }
+  .sarrow:last-of-type { margin-top: 70px; }
+
+  /* ─────────── HONESTY (تحذيرات) ─────────── */
+  .warnbox {
+    background: var(--pill);
+    border: var(--border);
+    border-radius: 20px;
+    box-shadow: var(--shadow-offset);
+    padding: 44px 40px 36px;
+    position: relative;
+    max-width: 980px; margin: 0 auto;
+    background-image: repeating-linear-gradient(0deg, rgba(22,21,19,.025) 0 1px, transparent 1px 4px);
+  }
+  .warn-stamp {
+    position:absolute; top:-20px; right: 36px;
+    background: var(--stamp); color: #fff;
+    font-family: var(--f-loud); font-weight:700; font-size: 15px;
+    padding: 8px 22px; border-radius: 999px;
+    border: 2.5px solid var(--ink);
+    transform: rotate(-2deg);
+    box-shadow: -4px 4px 0 var(--sun), 3px 3px 0 var(--ink);
+  }
+  .warnbox h2 { font-family: var(--f-logo); font-size: clamp(30px, 3.6vw, 44px); margin-bottom: 12px; }
+  .warn-intro { font-size: 16.5px; line-height: 1.95; color:#4a4d45; margin-bottom: 28px; }
+  .warn-intro b, .warn-item p b, .warn-close b { color: var(--ink); }
+  .warn-grid { display:grid; grid-template-columns: repeat(3,1fr); gap: 0; border-top: 2.5px dashed var(--ink); border-bottom: 2.5px dashed var(--ink); }
+  .warn-item { padding: 22px 20px; border-left: 2.5px dashed var(--ink); }
+  .warn-item:last-child { border-left: none; }
+  .warn-item h3 {
+    font-family: var(--f-loud); font-weight:700; font-size: 19px;
+    margin-bottom: 8px; color: var(--stamp);
+    text-shadow: 2px 2px 0 var(--sun);
+  }
+  .warn-item p { font-size: 14.5px; line-height: 1.9; color:#4a4d45; }
+  .warn-close { margin-top: 24px; font-family: var(--f-loud); font-weight:600; font-size: 16.5px; text-align:center; }
+
+  /* ─────────── PRICING (شريط الأقراص) ─────────── */
+  .pricing-wrap { position:relative; }
+  .plans { display:grid; grid-template-columns: repeat(3, 1fr); gap: 30px; align-items:stretch; }
+  .plan {
+    background: var(--pill);
+    border: var(--border);
+    border-radius: 20px;
+    box-shadow: var(--shadow-offset);
+    padding: 30px 28px;
+    display:flex; flex-direction:column;
+    position:relative;
+  }
+  .plan.best {
+    background: var(--ink); color: var(--pill);
+    transform: scale(1.04) rotate(-.5deg);
+    z-index: 2;
+  }
+  .plan.best .price, .plan.best h3 { color: var(--pill); }
+  .plan.best .per { color: var(--teal); }
+  .plan .badge {
+    position:absolute; top:-18px; left: 24px;
+    background: var(--stamp); color: #fff;
+    font-family: var(--f-loud); font-size: 13px; font-weight:700;
+    padding: 5px 16px; border-radius: 999px;
+    border: 2.5px solid var(--ink);
+    transform: rotate(-3deg);
+    box-shadow: -4px 4px 0 var(--sun);
+  }
+  .plan .pills-visual { font-size: 34px; letter-spacing: 4px; margin-bottom: 8px; }
+  .plan h3 { font-family: var(--f-loud); font-weight:700; font-size: 24px; }
+  .plan .sites { font-size: 14.5px; color: inherit; opacity:.75; margin-bottom: 18px; }
+  .plan .price {
+    font-family: var(--f-logo);
+    font-size: 58px; line-height: 1; color: var(--ink);
+  }
+  .plan .price small { font-size: 22px; font-family: var(--f-loud); }
+  .plan .per {
+    font-family: var(--f-loud); font-weight:600; font-size: 14px;
+    color: var(--teal-deep); margin: 6px 0 18px;
+  }
+  .plan ul { list-style:none; margin-bottom: 24px; flex:1; }
+  .plan li { padding: 5px 0; font-size: 14.5px; font-weight:500; }
+  .plan li::before { content:"✔  "; color: var(--teal-deep); font-weight:700; }
+  .plan.best li::before { color: var(--teal); }
+  .plan .btn { text-align:center; font-size: 18px; }
+  .plan.best .btn { background: var(--teal); color: var(--ink); box-shadow: 4px 4px 0 rgba(53,196,181,.35); }
+
+  .annual-note, .extra-note {
+    margin-top: 34px; text-align:center;
+    font-family: var(--f-loud); font-weight:600; font-size: 17px;
+  }
+  .annual-note b, .extra-note b {
+    background: var(--pill); border: 2.5px solid var(--ink);
+    padding: 3px 14px; border-radius: 10px;
+    box-shadow: 3px 3px 0 var(--ink);
+    display:inline-block; transform: rotate(-1deg);
+  }
+  .extra-note { font-size: 15px; margin-top: 18px; color:#0e2e2a; }
+
+  /* ─────────── FAQ ─────────── */
+  .faq { max-width: 860px; margin: 0 auto; }
+  .faq details {
+    background: var(--pill);
+    border: var(--border); border-radius: 14px;
+    box-shadow: 4px 4px 0 var(--ink);
+    margin-bottom: 16px;
+    overflow:hidden;
+  }
+  .faq summary {
+    cursor:pointer;
+    font-family: var(--f-loud); font-weight:600; font-size: 17px;
+    padding: 18px 22px;
+    list-style:none;
+    display:flex; justify-content:space-between; align-items:center;
+  }
+  .faq summary::after { content:"＋"; font-size: 22px; font-weight:700; }
+  .faq details[open] summary::after { content:"—"; }
+  .faq .a { padding: 0 22px 20px; font-size: 15px; line-height: 1.9; color:#4a4d45; }
+  .faq .a b { color: var(--ink); }
+
+  /* ─────────── FINAL CTA + FOOTER ─────────── */
+  .final { text-align:center; }
+  .final h2 { font-family: var(--f-logo); font-size: clamp(40px,5vw,64px); margin-bottom: 12px; }
+  .final p { font-size: 18px; margin-bottom: 30px; color:#0e2e2a; }
+
+  footer {
+    background: var(--ink); color: var(--pill);
+    border-top: var(--border);
+    padding: 34px 40px;
+    text-align:center;
+    font-family: var(--f-loud); font-size: 14.5px;
+  }
+  footer .flogo { font-family: var(--f-latin); font-weight:800; font-size: 26px; display:block; margin-bottom: 8px; }
+  footer .t { color: var(--teal); }
+
+  @media (max-width: 980px) {
+    .hero, .steps, .plans, .essentials-grid, .vibe-grid, .warn-grid { grid-template-columns: 1fr; }
+    .warn-item { border-left: none; border-bottom: 2.5px dashed var(--ink); }
+    .warn-item:last-child { border-bottom: none; }
+    .leaflet-grid { grid-template-columns: 1fr; }
+    .lf { border-left: none !important; }
+    .lf:nth-last-child(-n+3) { border-bottom: 2.5px dashed var(--ink); }
+    .lf:last-child { border-bottom: none; }
+    /* حبيبات طباعة قديمة فوق الصفحة كلها */
+  .grain {
+    position: fixed; inset: 0; z-index: 60;
+    pointer-events: none;
+    background-image:
+      radial-gradient(rgba(22,21,19,.5) .6px, transparent 1.1px),
+      radial-gradient(rgba(255,255,255,.55) .6px, transparent 1.1px);
+    background-size: 5px 7px, 9px 11px;
+    background-position: 0 0, 3px 5px;
+    opacity: .16;
+    mix-blend-mode: overlay;
+  }
+
+  .perf { width: 18px; }
+    main { margin: 0 24px; }
+    .plan.best { transform: none; }
+    h1 .line { white-space: normal; }
+    nav { flex-wrap:wrap; gap: 14px; }
+  }
+</style>
+</head>
+<body>
+<div class="grain"></div>
+<div class="perf left"></div>
+<div class="perf right"></div>
+<main>
+
+<nav>
+  <img class="logo-img" src="assets/rivo-logo-ar.png" alt="ريفو">
+  <a href="#leaflet">المميزات</a>
+  <a href="#steps">إزاي تبدأ</a>
+  <a href="#pricing">الأسعار</a>
+  <a href="#faq">أسئلة</a>
+  <span class="nav-spacer"></span>
+  <a href="#pricing" class="btn btn-teal">ابدأ دلوقتي</a>
+</nav>
+
+<!-- ═══════════ HERO ═══════════ -->
+<section class="hero">
+  <div>
+    <span class="kicker">من مصر · بالجنيه المصري · <b>من غير مفاجآت الدولار</b></span>
+    <h1>
+      <span class="line"><span class="hl">بنيت بالـ AI؟</span></span>
+      <span class="line"><span class="brand">ريفو</span> استضافة</span>
+      <span class="line">من غير وجع دماغ.</span>
+    </h1>
+    <p class="sub">
+      بتبني بالذكاء الاصطناعي؟ Claude ولا Codex ولا Kimi ولا DeepSeek — أيًا كان بتستخدم إيه؟
+      <b>ريفو</b> بيديك دومين واستضافة وSSL وإيميل — كل حاجة جاهزة
+      عشان مشروعك يطلع أونلاين في دقايق.
+      <b>سعر في المتناول، ثابت بالجنيه — ومفعول قوي.</b>
+    </p>
+    <div class="cta-row">
+      <a href="#pricing" class="btn btn-stamp">ابدأ دلوقتي ←</a>
+      <a href="#pricing" class="cta-alt">شوف الأسعار</a>
+    </div>
+
+    <div class="dosage">
+      <div class="dose"><span class="n">٩٩٫٩٪</span><span class="l">ضمان التشغيل</span></div>
+      <div class="dose"><span class="n">دقايق</span><span class="l">من الدفع للأونلاين</span></div>
+      <div class="dose"><span class="n">NVMe</span><span class="l">تخزين سريع</span></div>
+      <div class="dose"><span class="n">١٤٩</span><span class="l">ج.م/شهر · ابتداءً من</span></div>
+    </div>
+  </div>
+
+  <div class="visual">
+    <div class="pack">
+      <img class="pack-box"  src="assets/rivo-box.png"  alt="علبة ريفو">
+      <img class="pack-wrap" src="assets/rivo-wrap.png" alt="شريط ريفو">
+    </div>
+
+    <div class="made-egypt">
+      <svg viewBox="0 0 60 40" aria-hidden="true">
+        <rect x="2" y="2" width="56" height="36" fill="#EFEFEA" stroke="#161513" stroke-width="3"/>
+        <rect x="2" y="2" width="56" height="12" fill="#C0503C" stroke="#161513" stroke-width="3"/>
+        <rect x="2" y="26" width="56" height="12" fill="#161513" stroke="#161513" stroke-width="3"/>
+        <circle cx="30" cy="20" r="4" fill="none" stroke="#E2BC5F" stroke-width="2.5"/>
+      </svg>
+      <span>صُنع في مصر</span>
+    </div>
+
+    <div class="rx">
+      <h3>في كل باقة — مهما كانت صغيرة</h3>
+      <ul>
+        <li>مساحة NVMe SSD سريعة</li>
+        <li>شهادة SSL مجانية</li>
+        <li>نسخ احتياطي يومي تلقائي</li>
+        <li>إيميلات على دومينك</li>
+      </ul>
+      <div class="dose-note">من مشروع واحد لـ ١٠ مشاريع — نفس المميزات</div>
+    </div>
+  </div>
+</section>
+
+<div class="ticker">
+  <span>يعالج: توقف الموقع</span><span class="t">✦</span>
+  <span>بطء التحميل</span><span class="t">✦</span>
+  <span>فواتير مفاجئة</span><span class="t">✦</span>
+  <span>دعم سيء</span><span class="t">✦</span>
+  <span>THE RIVO HOSTING CO. CAIRO</span><span class="t">✦</span>
+  <span>يعالج: توقف الموقع</span><span class="t">✦</span>
+  <span>بطء التحميل</span><span class="t">✦</span>
+  <span>فواتير مفاجئة</span><span class="t">✦</span>
+  <span>دعم سيء</span><span class="t">✦</span>
+</div>
+
+<!-- ═══════════ VIBE CODERS — SSH / GitHub / Deploy ═══════════ -->
+<section id="vibe">
+  <div class="sec-head">
+    <span class="tag">للـ vibe coders</span>
+    <h2>وكيلك الذكي يوصّل على طول</h2>
+    <p>مش لوحة تحكم وبس — ريفو مبني عشان الوكيل البرمجي بتاعك يشتغل عليه مباشرة.</p>
+  </div>
+
+  <div class="vibe-grid">
+    <div class="vibe-copy">
+      <div class="vchip vchip-pill">
+        <h3>SSH مباشر للسيرفر</h3>
+        <p>وصّل وكيلك الذكي — Claude Code أو Codex أو غيرهم — بمشروعك بـ SSH،
+        وسيبه يشتغل: يرفع، يعدّل، يصلّح، ويشغّل أوامر <b>من الترمينال على طول</b>.</p>
+      </div>
+      <div class="vchip vchip-dash">
+        <h3>ربط بـ GitHub</h3>
+        <p>Git مدمج في اللوحة: اربط الريبو بتاعك، واعمل push من جهازك
+        أو من GitHub — <b>ومشروعك يتحدّث لوحده</b>.</p>
+      </div>
+      <div class="vchip vchip-stamp">
+        <h3>نشر بضغطة واحدة</h3>
+        <p>ووردبريس بضغطة، وStaging تجرّب عليه قبل ما تنشر،
+        وقاعدة البيانات بوصول Remote — <b>كل حاجة الوكيل محتاجها جاهزة</b>.</p>
+      </div>
+    </div>
+
+    <div class="term" dir="ltr">
+      <div class="term-head">
+        <span class="td" style="background:#D63A2A"></span>
+        <span class="td" style="background:#E9E1CF"></span>
+        <span class="td" style="background:#35C4B5"></span>
+        <span class="term-title">claude — yourproject</span>
+      </div>
+      <pre class="term-body">$ claude
+&gt; وصّل بالسيرفر وارفع المشروع
+
+⏺ ssh rivo@yourproject.com
+  <span class="ok">connected ✓</span>
+⏺ git push rivo main
+  <span class="ok">deployed ✓</span>
+
+<span class="live">● yourproject.com is LIVE</span>
+
+$ <span class="cursor">▊</span></pre>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════ LEAFLET — النشرة الداخلية ═══════════ -->
+<section id="leaflet">
+  <div class="sec-head">
+    <span class="tag">النشرة الداخلية</span>
+    <h2>بتاخد إيه مع أي باقة؟</h2>
+    <p>لوحة تحكم كاملة بكل الأدوات دي — مع أرخص باقة زي أغلى باقة، من غير زيادة في السعر.</p>
+  </div>
+
+  <div class="leaflet">
+    <div class="leaflet-grid">
+      <div class="lf">
+        <span class="ic"><span class="mini-burst"></span></span>
+        <h3>ووردبريس بضغطة واحدة</h3>
+        <p>تنصيب ووردبريس في ثواني، تحديثات تلقائية، إدارة الإضافات والثيمات والمستخدمين من مكان واحد — ومعاك <b>Staging</b> تجرب فيه قبل ما تنشر.</p>
+      </div>
+      <div class="lf">
+        <span class="ic"><span class="mini-burst"></span></span>
+        <h3>إيميلات على دومينك</h3>
+        <p>حسابات إيميل غير محدودة باسم شركتك (yourname@yoursite.com)، مع Webmail وتحويلات ورد تلقائي وفلتر سبام. <b>شكل احترافي قدام عملاءك.</b></p>
+      </div>
+      <div class="lf">
+        <span class="ic"><span class="mini-burst"></span></span>
+        <h3>قواعد بيانات MySQL</h3>
+        <p>قواعد بيانات MySQL مع phpMyAdmin جاهز، ووصول Remote لو بتشتغل من Claude أو Codex أو أي أداة خارجية. <b>للـ vibe coders دي نعمة.</b></p>
+      </div>
+      <div class="lf">
+        <span class="ic"><span class="mini-burst"></span></span>
+        <h3>حماية من غير وصفة</h3>
+        <p>SSL مجاني، فحص Malware، حماية بكلمة سر، وSSH آمن. مشروعك متأمّن <b>من اليوم الأول</b> من غير ما تدفع مليم زيادة.</p>
+      </div>
+      <div class="lf">
+        <span class="ic"><span class="mini-burst"></span></span>
+        <h3>نسخ احتياطي يرجّع الزمن</h3>
+        <p>Timeline Backups بتصوّر مشروعك تلقائيًا كل يوم. عملت حاجة غلط؟ <b>ارجع لأي نقطة زمنية بضغطة</b> — كأن حاجة ماحصلتش.</p>
+      </div>
+      <div class="lf">
+        <span class="ic"><span class="mini-burst"></span></span>
+        <h3>سرعة على CDN عالمي</h3>
+        <p>Edge Caching وتوزيع عالمي وضغط تلقائي للصور والملفات. مشروعك يفتح بسرعة <b>من القاهرة لكاليفورنيا.</b></p>
+      </div>
+      <div class="lf">
+        <span class="ic"><span class="mini-burst"></span></span>
+        <h3>ملفاتك تحت إيدك</h3>
+        <p>File Manager من المتصفح، حسابات FTP، و<b>Git مدمج</b> — اعمل push من الترمينال ومشروعك يتحدّث. زي المحترفين بالظبط.</p>
+      </div>
+      <div class="lf">
+        <span class="ic"><span class="mini-burst"></span></span>
+        <h3>إحصائيات وسجلات</h3>
+        <p>مين زار مشروعك ومنين وامتى، استهلاك الباندويدث، وسجلات الأخطاء لما حاجة تقف. <b>كله قدامك واضح</b> من غير أدوات خارجية.</p>
+      </div>
+      <div class="lf">
+        <span class="ic"><span class="mini-burst"></span></span>
+        <h3>دومينات وDNS كامل</h3>
+        <p>سجّل دومينك أو انقله لريفو، وتحكم كامل في الـ DNS والـ Subdomains والتحويلات. <b>كل حاجة من لوحة واحدة.</b></p>
+      </div>
+    </div>
+    <div class="leaflet-foot">
+      الأعراض الجانبية: <b>راحة بال</b> · <b>موقع شغال على طول</b> · <b>وقت فاضي تبني فيه</b>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════ ESSENTIALS — دومين / استضافة / إيميل ═══════════ -->
+<section id="essentials">
+  <div class="sec-head">
+    <span class="tag">مشروعك يستاهل</span>
+    <h2>اسم باسمك، ومكان لمشروعك</h2>
+    <p>عندك فكرة أو مشروع خلصته وقاعد على جهازك؟ دي الحاجات اللي محتاجها عشان يطلع للناس.</p>
+  </div>
+
+  <div class="essentials-grid">
+    <div class="ess">
+      <div class="ess-num"><span class="mini-burst"></span></div>
+      <h3>دومين باسمك أنت</h3>
+      <p>
+        مش لينك طويل على منصة حد تاني — <b>yourname.com</b> بتاعك أنت.
+        اسمك أو اسم مشروعك، بالعربي معناه: أنت موجود فعلًا على الإنترنت.
+        تسجّله من عندنا في دقيقة، أو لو عندك دومين قديم تنقله وتديره من نفس اللوحة —
+        DNS كامل تحت إيدك.
+      </p>
+    </div>
+    <div class="ess">
+      <div class="ess-num"><span class="mini-burst"></span></div>
+      <h3>استضافة ترفع عليها مشروعك</h3>
+      <p>
+        بنيت مشروع بأي أداة AI؟ عندك ووردبريس؟ لاندينج بيدج لشغلك؟
+        <b>ارفعه وهو شغال في دقايق</b> — على سيرفرات NVMe سريعة، بشهادة SSL،
+        ونسخ احتياطي يومي بيحصل لوحده. أنت ركّز في مشروعك، وسيبنا نشيل هم السيرفر.
+      </p>
+    </div>
+    <div class="ess">
+      <div class="ess-num"><span class="mini-burst"></span></div>
+      <h3>إيميل احترافي على دومينك</h3>
+      <p>
+        بطّل تبعت لعملاءك من جيميل شخصي.
+        <b>you@yourname.com</b> شكله مختلف تمامًا في الشغل —
+        وبييجي مع استضافتك من غير أي تكلفة إضافية، بعدد الحسابات اللي أنت عايزه.
+      </p>
+    </div>
+  </div>
+
+  <div class="ess-punch">وكل ده مع بعض — <b>بـ ١٤٩ جنيه في الشهر.</b></div>
+</section>
+
+
+<!-- ═══════════ STEPS ═══════════ -->
+<section id="steps">
+  <div class="sec-head">
+    <span class="tag">إزاي تبدأ</span>
+    <h2>٣ خطوات ومشروعك أونلاين</h2>
+  </div>
+  <div class="steps-flow">
+    <div class="sstep">
+      <span class="snum">١</span>
+      <h3>اختار باقتك</h3>
+      <p>مشروع واحد تجرّب بيه، ٣ مشاريع لشغلك، أو ١٠ مشاريع لو أنت فريلانسر بتستضيف لعملاءك. <b>كلهم بنفس المميزات.</b></p>
+    </div>
+    <svg class="sarrow" viewBox="0 0 140 70" aria-hidden="true">
+      <path d="M132 30 C 100 4, 60 62, 18 36" fill="none" stroke="currentColor" stroke-width="3.5" stroke-dasharray="9 7" stroke-linecap="round"/>
+      <path d="M30 24 L14 37 L34 44" fill="none" stroke="currentColor" stroke-width="3.5" stroke-linecap="round" stroke-linejoin="round"/>
+    </svg>
+    <div class="sstep">
+      <span class="snum">٢</span>
+      <h3>ادفع بالفيزا — بالجنيه</h3>
+      <p>دفعة واحدة كل ٦ شهور بأي كارت فيزا أو ماستركارد عن طريق Stripe. <b>السعر بالجنيه المصري وثابت</b> — عارف بتدفع كام قبل ما تدوس.</p>
+    </div>
+    <svg class="sarrow" viewBox="0 0 140 70" aria-hidden="true">
+      <path d="M132 40 C 100 66, 60 8, 18 34" fill="none" stroke="currentColor" stroke-width="3.5" stroke-dasharray="9 7" stroke-linecap="round"/>
+      <path d="M30 26 L14 35 L32 46" fill="none" stroke="currentColor" stroke-width="3.5" stroke-linecap="round" stroke-linejoin="round"/>
+    </svg>
+    <div class="sstep">
+      <span class="snum">٣</span>
+      <h3>حسابك يتفعّل فورًا</h3>
+      <p>هيوصلك حساب على لوحة تحكم ريفو، تنصّب ووردبريس أو ترفع كودك، وتوصّل دومينك. <b>من الدفع للأونلاين في دقايق.</b></p>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════ HONESTY — تحذيرات قبل الاستعمال ═══════════ -->
+<section id="honesty">
+  <div class="warnbox">
+    <span class="warn-stamp">اقرأ كويس قبل ما تدفع</span>
+    <h2>ليه رخيصة كده؟ عشان مفيش حاجة مخفية.</h2>
+    <p class="warn-intro">السعر اللي بتدفعه ده تقريبًا <b>تكلفة الاستضافة نفسها</b> — مش مضاف عليه فريق خدمة عملاء ولا مصاريف تسويق. وعشان كده في ٣ حاجات لازم تعرفها وأنت مبسوط:</p>
+    <div class="warn-grid">
+      <div class="warn-item">
+        <h3>مفيش خدمة عملاء</h3>
+        <p>مفيش حد هيرد عليك في شات أو تليفون. المنصة <b>سيلف سيرفيس بالكامل</b> — بتعمل كل حاجة بنفسك.</p>
+      </div>
+      <div class="warn-item">
+        <h3>مفيش استرداد</h3>
+        <p>بتدفع ٦ شهور مقدمًا، والمبلغ واضح قبل ما تدوس. <b>بعد التفعيل مفيش رجوع في الفلوس</b> — عشان كده ابدأ بأصغر باقة وجرّب.</p>
+      </div>
+      <div class="warn-item">
+        <h3>بتتعلم بنفسك</h3>
+        <p>لوحة التحكم عالمية ومعروفة، وشرحها موجود في كل حتة على النت — <b>والـ AI اللي بتبني بيه يعرف يستخدمها كويس.</b> دي مهارة تستاهل تتعلمها.</p>
+      </div>
+    </div>
+    <p class="warn-close">ده مش عيب في الخدمة — <b>ده سبب السعر.</b> عايز حد يظبطلك كل حاجة ويرد عليك؟ في شركات بتعمل كده بعشرة أضعاف السعر، وإحنا مش منهم.</p>
+  </div>
+</section>
+
+<!-- ═══════════ PRICING — شريط الأقراص ═══════════ -->
+<section id="pricing" class="pricing-wrap">
+  <div class="sec-head">
+    <span class="tag">الأسعار</span>
+    <h2>في المتناول — ومفعول قوي</h2>
+    <p>نفس المميزات الكاملة في كل باقة — الفرق بس عدد المشاريع. الاشتراك ٦ شهور، بالجنيه، والسعر ثابت.</p>
+  </div>
+
+  <div class="plans">
+    <div class="plan">
+      <div class="pills-visual"><span class="p1"></span></div>
+      <h3>مشروع واحد</h3>
+      <div class="sites">جرّب وشوف بنفسك</div>
+      <div class="price">١٤٩<small> ج.م/شهر</small></div>
+      <div class="per">٨٩٤ ج.م — تُدفع ٦ شهور مرة واحدة</div>
+      <ul>
+        <li>مشروع واحد (ووردبريس أو Linux)</li>
+        <li>SSL + إيميلات + نسخ احتياطي</li>
+        <li>لوحة التحكم الكاملة</li>
+        <li>تفعيل فوري — سيلف سيرفيس بالكامل</li>
+      </ul>
+      <a href="#" class="btn btn-teal">أبو مشروع واحد</a>
+    </div>
+
+    <div class="plan best">
+      <div class="badge">الأكثر طلبًا</div>
+      <div class="pills-visual"><span class="p1"></span><span class="p1"></span><span class="p1"></span></div>
+      <h3>٣ مشاريع</h3>
+      <div class="sites">للي شغّال على أكتر من فكرة</div>
+      <div class="price">٣٤٩<small> ج.م/شهر</small></div>
+      <div class="per">٢٬٠٩٤ ج.م لـ ٦ شهور — المشروع بـ ١١٧ ج.م/شهر</div>
+      <ul>
+        <li>٣ مشاريع منفصلة بالكامل</li>
+        <li>SSL + إيميلات + نسخ احتياطي للكل</li>
+        <li>لوحة التحكم الكاملة</li>
+        <li>تفعيل فوري — سيلف سيرفيس بالكامل</li>
+      </ul>
+      <a href="#" class="btn">أبو ٣ مشاريع</a>
+    </div>
+
+    <div class="plan">
+      <div class="pills-visual pills-ten"><span class="p1"></span><span class="p1"></span><span class="p1"></span><span class="p1"></span><span class="p1"></span><span class="p1"></span><span class="p1"></span><span class="p1"></span><span class="p1"></span><span class="p1"></span></div>
+      <h3>١٠ مشاريع</h3>
+      <div class="sites">للفريلانسر والوكالات الصغيرة</div>
+      <div class="price">٧٩٩<small> ج.م/شهر</small></div>
+      <div class="per">٤٬٧٩٤ ج.م لـ ٦ شهور — المشروع بـ ٨٠ ج.م/شهر</div>
+      <ul>
+        <li>١٠ مشاريع لك أو لعملاءك</li>
+        <li>SSL + إيميلات + نسخ احتياطي للكل</li>
+        <li>لوحة التحكم الكاملة</li>
+        <li>تفعيل فوري — سيلف سيرفيس بالكامل</li>
+      </ul>
+      <a href="#" class="btn btn-teal">أبو ١٠ مشاريع</a>
+    </div>
+  </div>
+
+  <div class="extra-note">محتاج أكتر من ١٠ مشاريع؟ السعر ثابت: <b>٨٠ ج.م/شهر لكل مشروع زيادة</b> — مهما كبرت.</div>
+  <div class="extra-note" style="font-size:13.5px; opacity:.85;">الاشتراك ٦ شهور مقدمًا · منصة سيلف سيرفيس · لا يوجد استرداد بعد التفعيل</div>
+</section>
+
+<!-- ═══════════ FAQ ═══════════ -->
+<section id="faq">
+  <div class="sec-head">
+    <span class="tag">أسئلة شائعة</span>
+    <h2>أسئلة بتتسأل كتير</h2>
+  </div>
+  <div class="faq">
+    <details>
+      <summary>أنا لسه بجرب وعمري ما اشتريت استضافة — هعرف أتعامل؟</summary>
+      <div class="a">أيوه. ريفو <b>سيلف سيرفيس بالكامل</b> — لوحة التحكم بسيطة وبالأيقونات، تنصيب ووردبريس بضغطة واحدة، وكل حاجة بتعملها بنفسك من غير ما تستنى حد. ولو وقفت، اسأل الـ AI اللي بتبني بيه — هو عارف اللوحة دي كويس.</div>
+    </details>
+    <details>
+      <summary>ببني بالـ AI — إيه اللي يخص ريفو فيّا؟</summary>
+      <div class="a">أنت بتبني الموقع بالـ AI، بس محتاج مكان يشتغل منه: دومين، سيرفر، SSL، وقاعدة بيانات. ريفو بيديك <b>SSH وGit وFTP وRemote MySQL</b> — يعني تعمل deploy من الترمينال مباشرة، والموقع يطلع لايف.</div>
+    </details>
+    <details>
+      <summary>إيه الفرق بينكم وبين Hostinger والشركات الأجنبية؟</summary>
+      <div class="a">سعرنا <b>بالجنيه وثابت</b> — مش عرض أول سنة وبعدين الفاتورة تتضاعف بالدولار. التجديد بنفس السعر اللي اشتركت بيه، من غير مفاجآت.</div>
+    </details>
+    <details>
+      <summary>الدفع إزاي؟</summary>
+      <div class="a">دفعة واحدة كل ٦ شهور بأي كارت فيزا/ماستركارد عن طريق Stripe — أأمن نظام دفع في العالم. <b>المبلغ واضح قبل ما تدفع، ومفيش استرداد بعد التفعيل</b> — عشان كده مخلّيين أصغر باقة رخيصة: جرّب بمشروع واحد الأول، ولو ريفو عجبك كبّر بعدين. وملفاتك ونسخك الاحتياطية معاك لحد آخر يوم في اشتراكك.</div>
+    </details>
+    <details>
+      <summary>هل في حدود على الباندويدث أو الزيارات؟</summary>
+      <div class="a">استخدام عادل بلا حدود مصطنعة. مشروع شخصي أو متجر صغير أو بورتفوليو — مش هتحس بأي حد. ولو مشروعك كبر جدًا (مبروك!) هنكلمك ونرتب لك حل أكبر.</div>
+    </details>
+    <details>
+      <summary>ليه اسمه ريفو؟</summary>
+      <div class="a">لو أنت من جيل الثمانينات والتسعينات، أنت عارف. قرص واحد وكان الصداع يروح. <b>نفس الفكرة — بس للمواقع.</b></div>
+    </details>
+  </div>
+</section>
+
+<!-- ═══════════ FINAL CTA ═══════════ -->
+<section class="final">
+  <h2>استضافة في المتناول. ومفعولها قوي.</h2>
+  <p>ابدأ بمشروع واحد بـ ١٤٩ ج.م/شهر — تدفعها ٦ شهور مرة واحدة، ومفيش أي مصاريف تانية.</p>
+  <a href="#pricing" class="btn btn-stamp">ابدأ دلوقتي ←</a>
+</section>
+
+</main>
+
+<footer>
+  <span class="flogo">RiVO</span>
+  شركة ريفو للاستضافة · القاهرة <span class="t">✦</span> THE RIVO HOSTING CO. <span class="t">✦</span> يُحفظ في مكان جاف بعيدًا عن الاستضافات البطيئة
+</footer>
+
+</body>
+</html>
