@@ -408,6 +408,29 @@
 
   .ic img, .ess-num img { width: 30px; height: 30px; display:block; }
 
+  /* ─────────── POST STAMP (طابع بريد) ─────────── */
+  .rel { position: relative; }
+  .post-stamp {
+    position: absolute;
+    bottom: 26px;
+    left: 6%;
+    width: 150px;
+    transform: rotate(-9deg);
+    z-index: 3;
+    pointer-events: none;
+  }
+  .post-stamp img {
+    width: 100%; display: block;
+    filter: drop-shadow(3px 4px 0 rgba(22,21,19,.3));
+  }
+  .post-stamp .postmark {
+    position: absolute;
+    width: 150%;
+    top: -34%; left: 42%;
+    transform: rotate(7deg);
+    mix-blend-mode: multiply;
+  }
+
   /* ─────────── VIBE (SSH / GitHub / Deploy) ─────────── */
   .vibe-grid { display:grid; grid-template-columns: 1fr 1fr; gap: 44px; align-items:center; }
   .vibe-copy { display:flex; flex-direction:column; gap: 26px; }
@@ -953,6 +976,7 @@
     footer { padding: 26px 16px; font-size: 12.5px; }
     footer .flogo { font-size: 22px; }
     .legal-line { font-size: 11px; }
+    .post-stamp { width: 110px; bottom: 6px; left: 4%; }
     .leaflet-foot { font-size: 13.5px; line-height: 2.4; }
     .leaflet-foot b { white-space: nowrap; display: inline-block; padding: 1px 8px; margin: 2px 1px; }
     .ess-punch b { white-space: nowrap; display: inline-block; }
@@ -1089,7 +1113,7 @@
 </section>
 
 <!-- ═══════════ ESSENTIALS — دومين / استضافة / إيميل ═══════════ -->
-<section id="essentials">
+<section id="essentials" class="rel">
   <div class="sec-head">
     <span class="tag">مشروعك يستاهل</span>
     <h2>عنوان باسمك، ومكان لمشروعك</h2>
@@ -1128,6 +1152,21 @@
   </div>
 
   <div class="ess-punch">وكل ده مع بعض — <b>بـ ١٤٩ جنيه في الشهر.</b></div>
+
+  <div class="post-stamp" aria-hidden="true">
+    <img src="assets/stamp-egypt.png" alt="">
+    <svg class="postmark" viewBox="0 0 200 120">
+      <g fill="none" stroke="#161513" stroke-width="3" opacity=".78">
+        <circle cx="60" cy="60" r="48"/>
+        <circle cx="60" cy="60" r="36"/>
+        <path d="M115 38 q 14 -8 28 0 t 28 0"/>
+        <path d="M115 58 q 14 -8 28 0 t 28 0"/>
+        <path d="M115 78 q 14 -8 28 0 t 28 0"/>
+      </g>
+      <text x="60" y="52" text-anchor="middle" font-family="Marhey" font-size="13" font-weight="700" fill="#161513" opacity=".8">ريفو</text>
+      <text x="60" y="72" text-anchor="middle" font-family="Marhey" font-size="10" font-weight="600" fill="#161513" opacity=".8">القاهرة · ١٩٩٥</text>
+    </svg>
+  </div>
 </section>
 
 <!-- ═══════════ VIBE CODERS — SSH / GitHub / Deploy ═══════════ -->
