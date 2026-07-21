@@ -85,6 +85,7 @@
   nav a { color: var(--pill); text-decoration:none; font-family: var(--f-loud); font-weight:500; font-size:16px; }
   nav a:hover { color: var(--teal); text-decoration: underline wavy 2px; text-underline-offset: 5px; }
   .nav-spacer { flex:1; }
+  .nav-login { font-family: var(--f-loud); font-weight:700; }
 
   .btn {
     display:inline-block;
@@ -888,7 +889,8 @@
 
     nav { gap: 10px; padding: 10px 14px; justify-content: space-between; }
     .logo-img { height: 36px; }
-    nav a:not(.btn) { display: none; }
+    nav a:not(.btn):not(.nav-login) { display: none; }
+    .nav-login { font-size: 14px; }
     .nav-spacer { display: none; }
     nav .btn { font-size: 14px; padding: 8px 18px; box-shadow: 3px 3px 0 var(--ink); }
 
@@ -1023,6 +1025,7 @@
   <a href="#pricing">الأسعار</a>
   <a href="#faq">أسئلة</a>
   <span class="nav-spacer"></span>
+  <a href="/login.php" class="nav-login">دخول</a>
   <a href="#pricing" class="btn btn-teal">ابدأ دلوقتي</a>
 </nav>
 
@@ -1508,6 +1511,8 @@ $ <span class="cursor">▊</span></pre>
   <span class="flogo">RiVO</span>
   شركة ريفو للاستضافة · القاهرة <span class="t">✦</span> THE RIVO HOSTING CO. <span class="t">✦</span> يُحفظ في مكان جاف بعيدًا عن الاستضافات البطيئة
   <div class="legal-links">
+    <a href="/login.php">دخول العملاء</a>
+    <span class="t">✦</span>
     <a href="#" onclick="document.getElementById('terms-modal').showModal(); return false;">الشروط والأحكام</a>
     <span class="t">✦</span>
     <a href="#" onclick="document.getElementById('privacy-modal').showModal(); return false;">سياسة الخصوصية</a>
