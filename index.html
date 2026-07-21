@@ -501,6 +501,20 @@
   @keyframes blink { 50% { opacity: 0; } }
 
   /* ─────────── DOMAIN BAR ─────────── */
+  .domain-grid {
+    display: grid;
+    grid-template-columns: 1fr 300px;
+    gap: 56px;
+    align-items: center;
+  }
+  .domain-art img {
+    width: 100%; max-width: 300px; display: block;
+    transform: rotate(-6deg);
+    filter: drop-shadow(6px 7px 0 rgba(22,21,19,.3));
+  }
+  .sec-head-start { text-align: start; margin-bottom: 34px; }
+  .sec-head-start p { max-width: 60ch; }
+
   .domain-bar {
     display:flex; align-items:center; gap: 0;
     max-width: 860px; margin: 0 auto;
@@ -996,6 +1010,10 @@
     footer .flogo { font-size: 22px; }
     .legal-line { font-size: 11px; }
     .post-stamp { width: 110px; bottom: 6px; left: 4%; }
+    .domain-grid { grid-template-columns: 1fr; gap: 30px; }
+    .domain-art { text-align: center; }
+    .domain-art img { max-width: 190px; margin: 0 auto; }
+    .sec-head-start { text-align: center; }
     .leaflet-foot { font-size: 13.5px; line-height: 2.4; }
     .leaflet-foot b { white-space: nowrap; display: inline-block; padding: 1px 8px; margin: 2px 1px; }
     .ess-punch b { white-space: nowrap; display: inline-block; }
@@ -1105,29 +1123,36 @@
 
 <!-- ═══════════ DOMAIN ═══════════ -->
 <section id="domain">
-  <div class="sec-head">
-    <span class="tag">الدومين</span>
-    <h2>عنوانك على الإنترنت</h2>
-    <p>الاستضافة هي الشقة اللي مشروعك ساكن فيها — <b>الدومين هو العنوان</b> اللي الناس بتوصلك بيه. من غير عنوان، محدش هيلاقي الشقة.</p>
-  </div>
+  <div class="domain-grid">
+    <div class="domain-main">
+      <div class="sec-head sec-head-start">
+        <span class="tag">الدومين</span>
+        <h2>عنوانك على الإنترنت</h2>
+        <p>الاستضافة هي الشقة اللي مشروعك ساكن فيها — <b>الدومين هو العنوان</b> اللي الناس بتوصلك بيه. من غير عنوان، محدش هيلاقي الشقة.</p>
+      </div>
 
-  <div class="domain-bar" dir="ltr">
-    <span class="d-www">www.</span>
-    <span class="d-field">
-      <input type="text" id="domain-input" placeholder="" autocomplete="off" spellcheck="false" maxlength="40" aria-label="اكتب اسمك">
-      <span class="d-caret" aria-hidden="true"></span>
-      <span class="d-ghost" aria-hidden="true">اكتب اسمك هنا</span>
-    </span>
-    <span class="d-com">.com</span>
-    <button class="btn btn-teal d-btn" type="button">احجزلي الاسم ده →</button>
-  </div>
+      <div class="domain-bar" dir="ltr">
+        <span class="d-www">www.</span>
+        <span class="d-field">
+          <input type="text" id="domain-input" placeholder="" autocomplete="off" spellcheck="false" maxlength="40" aria-label="اكتب اسمك">
+          <span class="d-caret" aria-hidden="true"></span>
+          <span class="d-ghost" aria-hidden="true">اكتب اسمك هنا</span>
+        </span>
+        <span class="d-com">.com</span>
+        <button class="btn btn-teal d-btn" type="button">احجزلي الاسم ده →</button>
+      </div>
 
-  <div class="domain-notes">
-    <span>مش متضمن في الباقات — <b>بتشتريه لوحده</b> وبيتجدد سنويًا</span>
-    <span class="d-dot">✦</span>
-    <span>بيبقى <b>ملكك أنت</b> — حتى لو مشيت من ريفو</span>
-    <span class="d-dot">✦</span>
-    <span>عندك دومين قديم؟ <b>تنقله وتديره من نفس اللوحة</b></span>
+      <div class="domain-notes">
+        <span>مش متضمن في الباقات — <b>بتشتريه لوحده</b> وبيتجدد سنويًا</span>
+        <span class="d-dot">✦</span>
+        <span>بيبقى <b>ملكك أنت</b> — حتى لو مشيت من ريفو</span>
+        <span class="d-dot">✦</span>
+        <span>عندك دومين قديم؟ <b>تنقله وتديره من نفس اللوحة</b></span>
+      </div>
+    </div>
+    <div class="domain-art">
+      <img src="assets/stamp-hotel.png" alt="طوابع بريد مصرية قديمة">
+    </div>
   </div>
 </section>
 
