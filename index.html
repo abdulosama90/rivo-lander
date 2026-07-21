@@ -395,8 +395,15 @@
   .pills-visual img { filter: drop-shadow(4px 5px 0 rgba(22,21,19,.28)); }
   .pv-1 img { height: 110px; transform: rotate(-3deg); }
   .pv-3 img { height: 130px; transform: rotate(6deg); }
-  .pv-10 { justify-content: center; margin: -46px -14px 10px; }
-  .pv-10 img { width: calc(100% + 28px); max-width: none; transform: rotate(-2.5deg); }
+  .pv-10 {
+    position: absolute;
+    top: -52px; left: 12%;
+    width: 76%;
+    margin: 0;
+    z-index: 2;
+  }
+  .pv-10 img { width: 100%; transform: rotate(-14deg); }
+  .plan:has(.pv-10) { padding-top: 100px; }
 
   .ic img, .ess-num img { width: 30px; height: 30px; display:block; }
 
@@ -601,7 +608,7 @@
   }
   .plan.best {
     background: var(--ink); color: var(--pill);
-    box-shadow: 8px 8px 0 var(--stamp);
+    box-shadow: 8px 8px 0 #F2F1EC;
     transform: scale(1.04) rotate(-.5deg);
     z-index: 2;
   }
